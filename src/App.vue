@@ -25,15 +25,15 @@
                             <router-link
                                     tag="a"
                                     active-class="active"
-                                    :to="{ name: 'myFavourites' }"
-                                    exact>Favourite Recipes
+                                    :to="{ name: 'myFavorites' }"
+                                    exact>Favorite Recipes
                             </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
                             <router-link
                                     tag="a"
                                     active-class="active"
-                                    :to="{ name: 'myPersonal' }"
+                                    :to="{ name: 'myRecipes' }"
                                     exact>Personal Recipes
                             </router-link>
                         </b-dropdown-item>
@@ -41,7 +41,7 @@
                             <router-link
                                     tag="a"
                                     active-class="active"
-                                    :to="{ name: 'myFamily' }"
+                                    :to="{ name: 'myFamilyRecipes' }"
                                     exact>Family Recipes
                             </router-link>
                         </b-dropdown-item>
@@ -66,7 +66,7 @@
                             </router-link>
                         </b-dropdown-item>
                     </b-dropdown>
-                    <b-dropdown v-if="$root.store.username" id="dropdown-right" text=${root.store.username} right>
+                    <b-dropdown v-if="$root.store.username" id="dropdown-right" :text=$root.store.username right>
                         <b-dropdown-item @click="Logout" href="#">Logout</b-dropdown-item>
                     </b-dropdown>
                 </b-navbar-nav>
@@ -103,16 +103,19 @@
         min-height: 100vh;
     }
 
-    #nav {
+    #b-navbar {
+        padding: 30px;
+        margin-bottom: 30px;
+        margin-top: 30px;
         padding: 30px;
     }
 
-    #nav a {
+    #b-navbar a {
         font-weight: bold;
         color: #2c3e50;
     }
 
-    #nav a.router-link-exact-active {
+    #b-navbar a.router-link-exact-active {
         color: #42b983;
     }
 </style>
