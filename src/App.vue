@@ -1,59 +1,118 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link :to="{ name: 'main' }">Vue Recipes</router-link>|
-      <router-link :to="{ name: 'search' }">Search</router-link>|
-      {{ !$root.store.username }}
-      <span v-if="!$root.store.username">
-        Guest:
-        <router-link :to="{ name: 'register' }">Register</router-link>|
-        <router-link :to="{ name: 'login' }">Login</router-link>|
-      </span>
-      <span v-else>
-        {{ $root.store.username }}: <button @click="Logout">Logout</button>|
-      </span>
+    <div id="app">
+        <b-navbar toggleable="lg" type="dark" variant="dark">
+            <b-navbar-brand>
+                <router-link
+                        tag="a"
+                        active-class="active"
+                        :to="{ name: 'main' }"
+                        exact>Home
+                </router-link>
+            </b-navbar-brand>
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+            <b-collapse id="nav-collapse" is-nav>
+                <b-navbar-nav>
+                    <b-nav-item>
+                        <router-link
+                                tag="a"
+                                active-class="active"
+                                :to="{ name: 'search' }"
+                                exact> Search
+                        </router-link>
+                    </b-nav-item>
+                    <b-nav-item-dropdown v-if="$root.store.username" text="Personal Area" right>
+                        <b-dropdown-item>
+                            <router-link
+                                    tag="a"
+                                    active-class="active"
+                                    :to="{ name: 'myFavourites' }"
+                                    exact>Favourite Recipes
+                            </router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link
+                                    tag="a"
+                                    active-class="active"
+                                    :to="{ name: 'myPersonal' }"
+                                    exact>Personal Recipes
+                            </router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link
+                                    tag="a"
+                                    active-class="active"
+                                    :to="{ name: 'myFamily' }"
+                                    exact>Family Recipes
+                            </router-link>
+                        </b-dropdown-item>
+                    </b-nav-item-dropdown>
+                </b-navbar-nav>
+                <b-navbar-nav class="ml-auto">
+                    <b-dropdown v-if="!$root.store.username" id="dropdown-right" right text="Guest">
+                        <b-dropdown-item>
+                            <router-link
+                                    tag="a"
+                                    active-class="active"
+                                    :to="{ name: 'login' }"
+                                    exact>Login
+                            </router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link
+                                    tag="a"
+                                    active-class="active"
+                                    :to="{ name: 'register' }"
+                                    exact>Register
+                            </router-link>
+                        </b-dropdown-item>
+                    </b-dropdown>
+                    <b-dropdown v-if="$root.store.username" id="dropdown-right" text=${root.store.username} right>
+                        <b-dropdown-item @click="Logout" href="#">Logout</b-dropdown-item>
+                    </b-dropdown>
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
+        <router-view/>
     </div>
-    <router-view />
-  </div>
 </template>
 
 <script>
-export default {
-  name: "App",
-  methods: {
-    Logout() {
-      this.$root.store.logout();
-      this.$root.toast("Logout", "User logged out successfully", "success");
+    export default {
+        name: "App",
+        methods: {
+            Logout() {
+                this.$root.store.logout();
+                this.$root.toast("Logout", "User logged out successfully", "success");
 
-      this.$router.push("/").catch(() => {
-        this.$forceUpdate();
-      });
-    }
-  }
-};
+                this.$router.push("/").catch(() => {
+                    this.$forceUpdate();
+                });
+            }
+        }
+    };
 </script>
 
 <style lang="scss">
-@import "@/scss/form-style.scss";
+    @import "./scss/form-style.scss";
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  min-height: 100vh;
-}
+    #app {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #2c3e50;
+        min-height: 100vh;
+    }
 
-#nav {
-  padding: 30px;
-}
+    #nav {
+        padding: 30px;
+    }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    #nav a {
+        font-weight: bold;
+        color: #2c3e50;
+    }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+    #nav a.router-link-exact-active {
+        color: #42b983;
+    }
 </style>
