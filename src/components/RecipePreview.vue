@@ -2,21 +2,39 @@
   <router-link
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
     class="recipe-preview">
-    <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.image" class="recipe-image"/>
-    </div>
-    <div class="recipe-footer">
-      <div :title="recipe.title" class="recipe-title text-center">
-        {{ recipe.title }}
-      </div>
-      <ul class="recipe-overview">
-        <li>{{ recipe.readyInMinutes }} minutes</li>
-        <li>{{ recipe.aggregateLikes }} likes</li>
-        <li>Vegan: {{ recipe.vegan }}</li>
-        <li>Vegetarian: {{ recipe.vegetarian }}</li>
-        <li>Gluten free: {{ recipe.glutenFree }}</li>
-      </ul>
-    </div>
+<!--    <div class="recipe-body">-->
+<!--      <img v-if="image_load" :src="recipe.image" class="recipe-image"/>-->
+<!--    </div>-->
+<!--    <div class="recipe-footer">-->
+<!--      <div :title="recipe.title" class="recipe-title text-center">-->
+<!--        {{ recipe.title }}-->
+<!--      </div>-->
+<!--      <ul class="recipe-overview">-->
+<!--        <li>{{ recipe.readyInMinutes }} minutes</li>-->
+<!--        <li>{{ recipe.aggregateLikes }} likes</li>-->
+<!--        <li>Vegan: {{ recipe.vegan }}</li>-->
+<!--        <li>Vegetarian: {{ recipe.vegetarian }}</li>-->
+<!--        <li>Gluten free: {{ recipe.glutenFree }}</li>-->
+<!--      </ul>-->
+<!--    </div>-->
+    <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+      <b-row no-gutters>
+        <b-col md="6">
+          <b-card-img :img-src="recipe.image" alt="Image" class="rounded-0"></b-card-img>
+        </b-col>
+        <b-col md="6">
+          <b-card-body :title="recipe.title">
+            <b-card-text>
+              <li>{{ recipe.readyInMinutes }} minutes</li>
+              <li>{{ recipe.aggregateLikes }} likes</li>
+              <li>Vegan: {{ recipe.vegan }}</li>
+              <li>Vegetarian: {{ recipe.vegetarian }}</li>
+              <li>Gluten free: {{ recipe.glutenFree }}</li>
+            </b-card-text>
+          </b-card-body>
+        </b-col>
+      </b-row>
+    </b-card>
   </router-link>
 </template>
 
