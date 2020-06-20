@@ -161,7 +161,10 @@ export default {
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p)
+        length: (p) => minLength(5)(p) && maxLength(10)(p),
+        specialCharacter: (p) => /[\W|_]/.test(p),
+        number: (p) => /[0-9]/.test(p),
+        alpha: (p) => /[a-zA-Z]/.test(p)
       },
       confirmedPassword: {
         required,
@@ -182,7 +185,7 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://test-for-3-2.herokuapp.com/user/Register",
+          "http://assignment3-3-2-oranchen.herokuapp.com/register",
           {
             username: this.form.username,
             password: this.form.password
