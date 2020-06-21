@@ -26,7 +26,7 @@
           <b-card-body :title="recipe.title" class="b-card-text">
             <b-card-text>
               <li>{{ recipe.readyInMinutes }} minutes</li>
-              <li>{{ recipe.aggregateLikes }} likes</li>
+              <li v-if="recipe.aggregateLikes">{{ recipe.aggregateLikes }} likes</li>
               <li>Vegan: {{ recipe.vegan }}</li>
               <li>Vegetarian: {{ recipe.vegetarian }}</li>
               <li>Gluten free: {{ recipe.glutenFree }}</li>
