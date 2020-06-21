@@ -29,9 +29,9 @@
                 try {
                     const response = await this.axios.get(
                         //     "https://test-for-3-2.herokuapp.com/recipes/random"
-                        // "http://localhost:3000/recipes/getRandomRecipes"
-                        "http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
-                    );
+                         "http://localhost:3000/recipes/getRandomRecipes"
+                        // "http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
+                     );
 
                     console.log(response);
                     const recipes = response.data;

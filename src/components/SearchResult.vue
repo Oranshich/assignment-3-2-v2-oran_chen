@@ -1,8 +1,9 @@
 <template>
-    <b-container>
+
+    <b-container  class="searchResult">
         <b-row v-for="{r,index} in recipes" :key="`r.id-${index}`">
             <b-col>
-                <div v-if="index < 5">
+                <div v-if="index < num">
                     <RecipePreview class="recipePreview" :recipe="r" />
                 </div>
             </b-col>
@@ -16,7 +17,7 @@
         name: "SearchResult",
         data() {
             return {
-                key: value
+
             }
         },
         components: {
@@ -28,7 +29,7 @@
                 required: true
             },
             num:{
-              type: Number,
+                type: String,
                 required: true
             }
         }
