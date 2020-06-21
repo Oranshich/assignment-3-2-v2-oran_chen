@@ -10,12 +10,6 @@
         components: {
             RecipePreviewList
         },
-        // props: {
-        //     title: {
-        //         type: String,
-        //         required: true
-        //     }
-        // },
         data() {
             return {
                 recipes: []

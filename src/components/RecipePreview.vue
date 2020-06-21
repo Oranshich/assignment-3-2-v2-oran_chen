@@ -22,8 +22,8 @@
         <b-col md="6">
           <b-card-img :src="recipe.image" alt="Image" class="recipe-image"></b-card-img>
         </b-col>
-        <b-col md="6">
-          <b-card-body :title="recipe.title">
+        <b-col md="6" class="b-card-text">
+          <b-card-body :title="recipe.title" class="b-card-text">
             <b-card-text>
               <li>{{ recipe.readyInMinutes }} minutes</li>
               <li>{{ recipe.aggregateLikes }} likes</li>
@@ -90,11 +90,14 @@ export default {
   height: 100%;
   position: relative;
   margin: 10px 10px;
+  font-family: Calibri;
+
 }
 .recipe-preview > .recipe-body {
   width: 100%;
   height: 200px;
   position: relative;
+  font-family: Calibri;
 }
 
 .recipe-preview .recipe-body .recipe-image {
@@ -105,6 +108,8 @@ export default {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+  font-family: Calibri;
+
 }
 
 .recipe-footer {
@@ -116,12 +121,14 @@ export default {
 .recipe-footer .recipe-title {
   padding: 10px 10px;
   width: 100%;
-  font-size: 12pt;
+  font-size: 10pt;
+  font-family: Calibri;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+  font-family: Calibri;
 }
 
 .recipe-footer ul.recipe-overview {
@@ -141,6 +148,7 @@ export default {
   flex: 1 auto;
   table-layout: fixed;
   margin-bottom: 0px;
+  font-family: Calibri;
 }
 
 .recipe-preview .recipe-footer ul.recipe-overview li {
@@ -154,5 +162,11 @@ export default {
   width: 90px;
   display: table-cell;
   text-align: center;
+  font-family: Calibri;
+}
+.b-card-text{
+  font-family: Calibri;
+  font-size: 10pt;
+
 }
 </style>
