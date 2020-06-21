@@ -10,12 +10,12 @@
         components: {
             RecipePreviewList
         },
-        props: {
-            title: {
-                type: String,
-                required: true
-            }
-        },
+        // props: {
+        //     title: {
+        //         type: String,
+        //         required: true
+        //     }
+        // },
         data() {
             return {
                 recipes: []
@@ -28,7 +28,9 @@
             async updateRecipes() {
                 try {
                     const response = await this.axios.get(
-                        "http://assignment3-3-2-oranchen.herokuapp.com/user/getLastViewed"
+                        "http://assignment3-oranchen.herokuapp.com/user/getLastViewed",
+                        // "http://localhost:3000/user/getLastViewed",
+                        {withCredentials:true}
                     );
                     console.log(response);
                     const recipes = response.data;

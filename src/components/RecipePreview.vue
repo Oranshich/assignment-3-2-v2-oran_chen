@@ -20,7 +20,7 @@
     <b-card no-body class="overflow-hidden" style="max-width: 540px;">
       <b-row no-gutters>
         <b-col md="6">
-          <b-card-img :img-src="recipe.image" alt="Image" class="rounded-0"></b-card-img>
+          <b-card-img :src="recipe.image" alt="Image" class="recipe-image"></b-card-img>
         </b-col>
         <b-col md="6">
           <b-card-body :title="recipe.title">
@@ -40,16 +40,16 @@
 
 <script>
 export default {
-  mounted() {
-    this.axios.get(this.recipe.image).then((i) => {
-      this.image_load = true;
-    });
-  },
-  data() {
-    return {
-      image_load: false
-    };
-  },
+  // mounted() {
+  //   this.axios.get(this.recipe.image).then((i) => {
+  //     this.image_load = true;
+  //   });
+  // },
+  // data() {
+  //   return {
+  //     // image_load: false
+  //   };
+  // },
   props: {
     recipe: {
       type: Object,
@@ -86,7 +86,7 @@ export default {
 <style scoped>
 .recipe-preview {
   display: inline-block;
-  width: 80%;
+  width: 90%;
   height: 100%;
   position: relative;
   margin: 10px 10px;
@@ -100,7 +100,7 @@ export default {
 .recipe-preview .recipe-body .recipe-image {
   margin: auto;
   display: block;
-  width: 80%;
+  width: 90%;
   height: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
