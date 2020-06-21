@@ -51,6 +51,7 @@ export default {
   async created() {
     try {
       let response;
+      let response2;
       // response = this.$route.params.response;
 
       try {
@@ -60,10 +61,19 @@ export default {
             params: { recipe_id: this.$route.params.recipeId }
           }
         );
-
         console.log("response.status", response.status);
         console.log(response);
         if (response.status !== 200) this.$router.replace("/NotFound");
+        else if (this.$root.store.username){
+            response2 = this.axios.post(
+                    "http://assignment3-oranchen.herokuapp.com/user/viewRecipe",
+                    {
+                          recipe_id: response.data.id
+                    },
+                    {withCredentials:true}
+            );
+          console.log("response.status", response2.status);
+        }
       } catch (error) {
         console.log("error.response.status", error.response.status);
         this.$router.replace("/NotFound");
