@@ -10,12 +10,12 @@
         components: {
             RecipePreviewList
         },
-        props: {
-            title: {
-                type: String,
-                required: true
-            }
-        },
+        // props: {
+        //     title: {
+        //         type: String,
+        //         required: true
+        //     }
+        // },
         data() {
             return {
                 recipes: []
@@ -28,8 +28,9 @@
             async updateRecipes() {
                 try {
                     const response = await this.axios.get(
-                        "http://assignment3-3-2-oranchen.herokuapp.com/recipes/getRandomRecipes"
                         //     "https://test-for-3-2.herokuapp.com/recipes/random"
+                        // "http://localhost:3000/recipes/getRandomRecipes"
+                        "http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
                     );
 
                     console.log(response);

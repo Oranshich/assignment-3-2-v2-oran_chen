@@ -185,7 +185,7 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "http://assignment3-3-2-oranchen.herokuapp.com/register",
+          "http://assignment3-oranchen.herokuapp.com/register",
           {
             username: this.form.username,
             password: this.form.password
