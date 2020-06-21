@@ -96,11 +96,12 @@
     @import "./scss/form-style.scss";
 
     #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
+        /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
         min-height: 100vh;
+        font-family: Calibri;
     }
 
     #b-navbar {
@@ -108,14 +109,20 @@
         margin-bottom: 30px;
         margin-top: 30px;
         padding: 30px;
+        font-family: Calibri;
+
     }
 
     #b-navbar a {
         font-weight: bold;
         color: #2c3e50;
+        font-family: Calibri;
+
     }
 
     #b-navbar a.router-link-exact-active {
         color: #42b983;
+        font-family: Calibri;
+
     }
 </style>
