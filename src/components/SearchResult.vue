@@ -1,27 +1,19 @@
 <template>
-
-    <b-container  class="searchResult">
-        <b-row v-for="{r,index} in recipes" :key="`r.id-${index}`">
-            <b-col>
-                <div v-if="index < num">
-                    <RecipePreview class="recipePreview" :recipe="r" />
-                </div>
-            </b-col>
-        </b-row>
-    </b-container>
+    <RecipePreviewResults title="Search Result" :recipes="recipes"/>
 </template>
 
 <script>
     import RecipePreview from "./RecipePreview";
+    import RecipePreviewResults from "../components/RecipePreviewResults";
     export default {
         name: "SearchResult",
         data() {
             return {
-
+                myRecipes: Array
             }
         },
         components: {
-            RecipePreview
+            RecipePreviewResults
         },
         props: {
             recipes: {
@@ -32,7 +24,21 @@
                 type: String,
                 required: true
             }
-        }
+        },
+        // mounted() {
+        //     this.updateRecipes();
+        // },
+        // methods:{
+        //     updateRecipes(){
+        //         debugger
+        //         let i;
+        //         for (i = 0; i < this.recipes.length; i++){
+        //             if(i < this.num){
+        //                 this.myRecipes.push(this.recipes[i]);
+        //             }
+        //         }
+        //     }
+        // }
     }
 </script>
 

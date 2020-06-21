@@ -50,13 +50,8 @@
                 try {
                     const response = await this.axios.get(
                         //"http://assignment3-oranchen.herokuapp.com/search/query/:searchQuery/amount/:num",
-                        "http://localhost:3000/search/query/:"
-                        {
-                            params:{
-                                searchQuery: this.search_text,
-                                num: this.selected
-                            }
-                        });
+                        "http://localhost:3000/recipes/search/query/" + this.search_text + "/amount/" + this.num
+                );
 
                     console.log(response);
                     const recipes = response.data;
