@@ -1,36 +1,33 @@
 <template>
-  <div class="container">
-    <h1 class="title">Search Page</h1>
-    <div class="columns">
-      <div class="column is-one-fifth">
-        <div>
-          <refinement-list-filter :field="'state'"></refinement-list-filter>
-          <refinement-list-filter :field="'gender'"></refinement-list-filter>
-        </div>
-      </div>
-      <div class="column">
-        <div>
-          <searchbox :field="'firstname'"></searchbox>
-          <div style="margin: 20px auto;width: 90%">
-            <search-button></search-button>
-            <reset-button></reset-button>
-          </div>
-          <hits></hits>
-
-          <paginate :previousText="'Previous page'" :nextText="'Next page'" :size="10"></paginate>
-        </div>
-      </div>
+    <div>
+      <div class='is-icon is-searchbox' v-on:click='focus()'></div>
+      <input class='is-field is-searchbox' type='text' ref='input' v-model='entry' />
+      <input class="is-button is-search-button" type="button" :value='this.text' v-on:click='this.clickOn' />
     </div>
-  </div>
 </template>
+
 <script>
-  export default {
-    data() {
-      return {}
-    },
-    components: {
-      'refinement-list-filter': refinement-list-filter,
-      'search-button': search-button,
-    },
-  }
+    export default {
+      name : 'searchbox',
+
+      props:{
+        "text":{
+          type: String,
+          default : "Search"
+
+        }
+      },
+
+      methods : {
+        clickOn : function() {
+          // Execute request
+          this.fetch();
+        }
+      },
+
+    }
 </script>
+
+<style scoped>
+
+</style>
