@@ -4,11 +4,31 @@ import VueAxios from "vue-axios";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 import routes from "./routes";
+import VueCookies from "vue-cookies";
+Vue.use(VueCookies);
+
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
 });
+
+
+// router.beforeEach((to, from, next) => {
+//   // if the user logged in and than the cookie expired thus the local storage contains username but there is no cookie
+//   // if ((shared_data.username === undefined && Vue.$cookies.get("session")) || (shared_data.username !== undefined && !Vue.$cookies.get("session"))) {
+//   if (shared_data.username !== undefined && !Vue.$cookies.get("session")){
+//       // logout force
+//     shared_data.logout();
+//     // redirect to login page
+//     if (to.name!=='login')
+//       next({ name: 'login' });
+//     else
+//       next();
+//   } else {
+//     next();
+//   }
+// });
 
 import Vuelidate from "vuelidate";
 import "bootstrap/dist/css/bootstrap.css";
@@ -76,6 +96,7 @@ const shared_data = {
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    Vue.$cookies.remove("session");
     this.username = undefined;
   },
 };
