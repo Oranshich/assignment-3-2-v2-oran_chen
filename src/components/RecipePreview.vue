@@ -30,6 +30,12 @@
               <li>Vegan: {{ recipe.vegan }}</li>
               <li>Vegetarian: {{ recipe.vegetarian }}</li>
               <li>Gluten free: {{ recipe.glutenFree }}</li>
+              <li>Recently watched : {{recipe.watched.toString()}}</li>
+              <li>Saved to favorites: {{recipe.saved.toString()}}</li>
+<!--              <li v-if="recipe.watched !== undefined">Recently watched : {{recipe.watched.toString()}}</li>-->
+<!--              <li v-else>Recently watched: false</li>-->
+<!--              <li v-if="recipe.saved !== undefined">Saved to favorites: {{recipe.saved.toString()}}</li>-->
+<!--              <li v-else>Saved to favorites: false</li>-->
             </b-card-text>
           </b-card-body>
         </b-col>
