@@ -1,5 +1,5 @@
 <template>
-    <RecipePreviewResults title="My Favorite Recipes" :recipes="recipes"/>
+    <recipe-preview-results title="My Favorite Recipes" :recipes="recipes"/>
 </template>
 
 <script>
