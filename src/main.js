@@ -88,6 +88,7 @@ Vue.config.productionTip = false;
 
 const shared_data = {
   username: localStorage.username,
+  recipes_info: {},
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;

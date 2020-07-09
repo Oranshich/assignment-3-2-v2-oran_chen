@@ -30,15 +30,36 @@
                     this.recipes = [];
                     this.recipes.push(...recipes);
                     //bring watched and saved info
-                    const responseWatchedSaved = await this.axios.get(
-                        "http://assignment3-oranchen.herokuapp.com/user/recipeInfo/[" +
-                        this.recipes[0].id + "," + this.recipes[1].id + "," + this.recipes[2].id +"]",
-                        {withCredentials:true}
-                    );
-                    console.log(responseWatchedSaved);
-                    for(let i = 0; i <this.recipes.length; i++){
-                        this.recipes[i].watched = responseWatchedSaved.data[this.recipes[i].id].watched;
-                        this.recipes[i].saved = responseWatchedSaved.data[this.recipes[i].id].saved;
+                    let not_saved_s = ""
+                    let not_saved_a = {}
+                    for (let i = 0; i < this.recipes.length; i++){
+                        if (this.recipes[i].id in this.$root.store.recipes_info){
+                            this.recipes[i].watched = this.$root.store.recipes_info[this.recipes[i].id]["watched"];
+                            this.recipes[i].saved = this.$root.store.recipes_info[this.recipes[i].id]["saved"];
+                        }
+                        else{
+                            not_saved_a[i] = this.recipes[i].id;
+                            if (not_saved_s.length == 0){
+                                not_saved_s += this.recipes[i].id;
+                            }
+                            else{
+                                not_saved_s += "," + this.recipes[i].id;
+                            }
+                        }
+                    }
+                    if (not_saved_s.length>0) {
+                        const responseWatchedSaved = await this.axios.get(
+                            "http://assignment3-oranchen.herokuapp.com/user/recipeInfo/[" +
+                            not_saved_s + "]",
+                            {withCredentials: true}
+                        );
+                        console.log(responseWatchedSaved);
+                        for (let r in not_saved_a) {
+                            this.recipes[r].watched = responseWatchedSaved.data[not_saved_a[r]]["watched"];
+                            this.recipes[r].saved = responseWatchedSaved.data[not_saved_a[r]]["saved"];
+                            this.$root.store.recipes_info[not_saved_a[r]] = {"watched":  this.recipes[r].watched,
+                            "saved": this.recipes[r].saved};
+                        }
                     }
                      console.log(this.recipes);
                 } catch (error) {
