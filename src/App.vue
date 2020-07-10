@@ -99,9 +99,12 @@
         /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
         min-height: 100vh;
         font-family: Calibri;
+        font-size: 20px;
+        background-image: url("./assets/spices-background-1.jpg");
+        background-color: rgba(255,255,255,0.6);
+        background-blend-mode: lighten;
     }
 
     #b-navbar {

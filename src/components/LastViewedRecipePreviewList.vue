@@ -1,5 +1,5 @@
 <template>
-    <RecipePreviewList title="Last Viewed Recipes" :recipes="this.recipes"/>
+    <RecipePreviewList title="Last Viewed Recipes"  :recipes="this.recipes"/>
 </template>
 
 <script>
@@ -73,5 +73,9 @@
 </script>
 
 <style scoped>
-
+    .RecipePreviewList.title{
+        font-family: Calibri;
+        font-weight: bold;
+        size: 22px;
+    }
 </style>

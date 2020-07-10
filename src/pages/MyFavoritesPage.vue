@@ -1,5 +1,8 @@
 <template>
-    <RecipePreviewResults title="My Favorite Recipes" :recipes="recipes"/>
+    <div>
+        <br>
+        <RecipePreviewResults title="Favorite Recipes" :recipes="recipes"/>
+    </div>
 </template>
 
 <script>
