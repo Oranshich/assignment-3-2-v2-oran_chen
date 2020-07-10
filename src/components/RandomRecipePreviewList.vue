@@ -32,8 +32,6 @@
                 this.recipes.push(...recipes);
 
                 if (this.$root.store.username) {
-                    this.recipes.saved = "";
-                    this.recipes.watched = "";
                     //bring watched and saved info
                     let not_saved_s = ""
                     let not_saved_a = {}
@@ -56,10 +54,11 @@
                             not_saved_s + "]",
                             {withCredentials: true}
                         );
+                        const responseData = responseWatchedSaved.data;
                         console.log(responseWatchedSaved);
                         for (let r in not_saved_a) {
-                            this.recipes[r].watched = responseWatchedSaved.data[not_saved_a[r]]["watched"];
-                            this.recipes[r].saved = responseWatchedSaved.data[not_saved_a[r]]["saved"];
+                            this.recipes[r].watched = responseData[not_saved_a[r]]["watched"];
+                            this.recipes[r].saved = responseData[not_saved_a[r]]["saved"];
                             this.$root.store.recipes_info[not_saved_a[r]] = {
                                 "watched": this.recipes[r].watched,
                                 "saved": this.recipes[r].saved
