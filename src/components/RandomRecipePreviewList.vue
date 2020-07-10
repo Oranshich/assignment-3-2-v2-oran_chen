@@ -1,7 +1,7 @@
 <template>
     <div>
         <RecipePreviewList title="Random Recipes" :recipes="recipes"/>
-        <b-button  style="width:80px;display:block;" class="mx-auto w-25" variant="outline-primary" @click="updateRecipes">More</b-button>
+        <b-button  style="width:80px;display:block;" class="mx-auto w-25" variant="outline-primary" @click="getRandomRecipes">More</b-button>
     </div>
 </template>
 
@@ -25,54 +25,75 @@
             };
         },
         async created() {
-            try {
-                const response = await this.axios.get(
-                    "http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
-                );
-                console.log(response);
-                const recipes = response.data;
-                this.recipes = [];
-                this.recipes.push(...recipes);
+            await this.getRandomRecipes();
+        },
+        watch:{
+          async recipes(){
+              await this.getUserInformation();
+          }
+        },
 
-                if (this.$root.store.username) {
-                    this.recipes.saved = "";
-                    this.recipes.watched = "";
-                    //bring watched and saved info
-                    let not_saved_s = ""
-                    let not_saved_a = {}
-                    for (let i = 0; i < this.recipes.length; i++) {
-                        if (this.recipes[i].id in this.$root.store.recipes_info) {
-                            this.recipes[i].watched = this.$root.store.recipes_info[this.recipes[i].id]["watched"];
-                            this.recipes[i].saved = this.$root.store.recipes_info[this.recipes[i].id]["saved"];
-                        } else {
-                            not_saved_a[i] = this.recipes[i].id;
-                            if (not_saved_s.length == 0) {
-                                not_saved_s += this.recipes[i].id;
+        methods:{
+            async getRandomRecipes(){
+                try {
+                    const response = await this.axios.get(
+                        //"http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
+                        "http://localhost:3000/recipes/getRandomRecipes"
+                    );
+                    console.log(response);
+                    const recipes = response.data;
+                    this.recipes = [];
+                    this.recipes.push(...recipes);
+
+                     await this.getUserInformation();
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+
+            async getUserInformation(){
+                try{
+                    if (this.$root.store.username) {
+                        this.recipes.saved = "";
+                        this.recipes.watched = "";
+                        //bring watched and saved info
+                        let not_saved_s = ""
+                        let not_saved_a = {}
+                        for (let i = 0; i < this.recipes.length; i++) {
+                            if (this.recipes[i].id in this.$root.store.recipes_info) {
+                                this.recipes[i].watched = this.$root.store.recipes_info[this.recipes[i].id]["watched"];
+                                this.recipes[i].saved = this.$root.store.recipes_info[this.recipes[i].id]["saved"];
                             } else {
-                                not_saved_s += "," + this.recipes[i].id;
+                                not_saved_a[i] = this.recipes[i].id;
+                                if (not_saved_s.length == 0) {
+                                    not_saved_s += this.recipes[i].id;
+                                } else {
+                                    not_saved_s += "," + this.recipes[i].id;
+                                }
+                            }
+                        }
+                        if (not_saved_s.length > 0) {
+                            const responseWatchedSaved = await this.axios.get(
+                                //"http://assignment3-oranchen.herokuapp.com/user/recipeInfo/[" +
+                                "http://localhost:3000/user/recipeInfo/[" +
+                                not_saved_s + "]",
+                                {withCredentials: true}
+                            );
+                            console.log(responseWatchedSaved);
+                            for (let r in not_saved_a) {
+                                this.recipes[r].watched = responseWatchedSaved.data[not_saved_a[r]]["watched"];
+                                this.recipes[r].saved = responseWatchedSaved.data[not_saved_a[r]]["saved"];
+                                this.$root.store.recipes_info[not_saved_a[r]] = {
+                                    "watched": this.recipes[r].watched,
+                                    "saved": this.recipes[r].saved
+                                };
                             }
                         }
                     }
-                    if (not_saved_s.length > 0) {
-                        const responseWatchedSaved = await this.axios.get(
-                            "http://assignment3-oranchen.herokuapp.com/user/recipeInfo/[" +
-                            not_saved_s + "]",
-                            {withCredentials: true}
-                        );
-                        console.log(responseWatchedSaved);
-                        for (let r in not_saved_a) {
-                            this.recipes[r].watched = responseWatchedSaved.data[not_saved_a[r]]["watched"];
-                            this.recipes[r].saved = responseWatchedSaved.data[not_saved_a[r]]["saved"];
-                            this.$root.store.recipes_info[not_saved_a[r]] = {
-                                "watched": this.recipes[r].watched,
-                                "saved": this.recipes[r].saved
-                            };
-                        }
-                    }
+                    console.log(this.recipes);
+                } catch (error) {
+                    console.log(error);
                 }
-                console.log(this.recipes);
-            } catch (error) {
-                console.log(error);
             }
         }
     }
