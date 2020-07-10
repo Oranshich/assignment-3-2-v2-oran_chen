@@ -18,7 +18,7 @@
                         <li>Gluten free: {{ recipe.glutenFree }}</li>
                         <!--              <li v-if="recipe.watched !== undefined">Recently watched : {{recipe.watched}}</li>-->
                         <!--              <li v-if="recipe.saved !== undefined">Saved to favorites: {{recipe.saved}}</li>-->
-                        <li >Recently watched : {{recipe.watched}}</li>
+                        <li>Recently watched : {{recipe.watched}}</li>
                         <li id="save" @click="addToFavorites">Saved to favorites: {{isFavorite}}
                         </li>
                     </b-card-text>
