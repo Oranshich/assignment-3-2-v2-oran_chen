@@ -16,9 +16,9 @@
                     <!--              <div>Servings: {{ recipe.servings }} </div>-->
                     <div class="titles_all_containers">
                         <ul class="table_container">
-                            <li class="titleContainer">
+                            <li v-if="recipe.aggregateLikes" class="titleContainer">
                                 <div>
-                                    <span class="text_recipe">{{recipe.aggregateLikes}} like this recipe</span>
+                                    <span  class="text_recipe">{{recipe.aggregateLikes}} like this recipe</span>
                                 </div>
                             </li>
                             <li class="titleContainer">
@@ -273,7 +273,7 @@
         font-weight: bold;
         margin: 0 auto; /* Center the text container */
         padding: 10px;
-        width: 30%;
+        width: 40%;
         text-align: center; /* Center text */
         position: absolute; /* Position text */
         top: 20%; /* Position text in the middle */
