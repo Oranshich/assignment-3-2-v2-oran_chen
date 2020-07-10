@@ -19,6 +19,8 @@
                         <li v-if="recipe.watched.length>0" >Recently watched : {{recipe.watched}}</li>
                         <li v-if="recipe.saved.length>0" id="save" @click="addToFavorites">Saved to favorites: {{isFavorite}}
                         </li>
+                        <li v-if="recipe.preparedBy">Prepared By: {{recipe.preparedBy}}</li>
+                        <li v-if="recipe.preparedAt">Prepared At: {{recipe.preparedAt}}</li>
                     </b-card-text>
                 </b-card-body>
             </b-col>

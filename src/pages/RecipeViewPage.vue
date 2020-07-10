@@ -21,9 +21,9 @@
             <ul>
               <li
                 v-for="(r, index) in recipe.extendedIngredients"
-                :key="index + '_' + r.id"
-              >
-                {{ r.original }}
+                :key="index + '_' + r.id">
+                <p v-if="r.original">{{ r.original }}</p>
+                <p v-else>{{r.name}}, {{ r.amount }} {{r.unit}}</p>
               </li>
             </ul>
           </div>
