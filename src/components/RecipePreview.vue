@@ -49,7 +49,7 @@
         methods: {
             addToFavorites(){
               debugger
-                if (this.isFavorite == false) {
+                if (this.isFavorite === false) {
                     try {
                         let response = this.axios.post(
                             "http://assignment3-oranchen.herokuapp.com/user/addRecipeToFavorites",
