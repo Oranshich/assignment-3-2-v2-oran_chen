@@ -48,7 +48,7 @@
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
                 <b-navbar-nav class="ml-auto">
-                    <b-dropdown v-if="!$root.store.username" id="dropdown-right" right text="Guest">
+                    <b-dropdown variant="primary" v-if="!$root.store.username" id="dropdown-right" right text="Guest">
                         <b-dropdown-item>
                             <router-link
                                     tag="a"
@@ -66,7 +66,7 @@
                             </router-link>
                         </b-dropdown-item>
                     </b-dropdown>
-                    <b-dropdown v-if="$root.store.username" id="dropdown-right" :text=$root.store.username right>
+                    <b-dropdown v-if="$root.store.username" variant="primary" id="dropdown-right" :text=$root.store.username right>
                         <b-dropdown-item @click="Logout" href="#">Logout</b-dropdown-item>
                     </b-dropdown>
                 </b-navbar-nav>

@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <br>
         <h1 class="title"> Search Recipes</h1>
         <div class='is-icon is-searchPage' v-on:click='focus()'></div>
         <input class='is-field is-searchPage' type='text' ref='input' v-model='search_text' />
@@ -8,7 +9,8 @@
             <b-form-select v-model="num" :options="numOptions" size="sm" class="mt-3" ></b-form-select>
         </div>
         <SearchFiltering v-on:childToParent="onFilter"></SearchFiltering>
-        <SearchResult title="Search Result" :recipes="recipes" />
+        <br>
+        <SearchResult title="Search Results" :recipes="recipes" />
     </div>
 </template>
 

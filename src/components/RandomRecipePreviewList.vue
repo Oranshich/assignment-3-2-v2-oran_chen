@@ -1,7 +1,7 @@
 <template>
     <div>
         <RecipePreviewList title="Random Recipes" :recipes="recipes"/>
-        <b-button  style="width:80px;display:block;" class="mx-auto w-25" variant="outline-primary" @click="getRandomRecipes">More</b-button>
+        <b-button  style="width:60px;display:inline-block;" class="mx-auto w-25" variant="primary" @click="getRandomRecipes">More</b-button>
     </div>
 </template>
 
@@ -13,12 +13,6 @@
         components: {
             RecipePreviewList
         },
-        // props: {
-        //     title: {
-        //         type: String,
-        //         required: true
-        //     }
-        // },
         data() {
             return {
                 recipes: []
@@ -43,8 +37,11 @@
                     const recipes = response.data;
                     this.recipes = [];
                     this.recipes.push(...recipes);
-
-                     await this.getUserInformation();
+                    for (let i = 0; i < this.recipes.length; i++) {
+                        this.recipes[i].watched = "";
+                        this.recipes[i].saved = "";
+                    }
+                    await this.getUserInformation();
                 } catch (error) {
                     console.log(error);
                 }

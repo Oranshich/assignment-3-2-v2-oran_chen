@@ -2,7 +2,7 @@
     <div>
         <multiselect v-show="recipes.length > 0" v-on:close="selectedSort" v-model="filters" :options="filterOptions" :multiple="false" :close-on-select="true" :searchable="false" :clear-on-select="false" :preserve-search="true" placeholder="Sort by:" label="name" track-by="name" >
         </multiselect>
-        <RecipePreviewResults title="Search Result" :recipes="results"/>
+        <RecipePreviewResults title="Search Results" :recipes="results"/>
     </div>
 </template>
 

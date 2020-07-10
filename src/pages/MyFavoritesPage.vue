@@ -32,7 +32,10 @@
                     const recipes = response.data;
                     this.recipes = [];
                     this.recipes.push(...recipes);
-
+                    for (let i = 0; i < this.recipes.length; i++) {
+                        this.recipes[i].watched = "";
+                        this.recipes[i].saved = "";
+                    }
                     if (this.$root.store.username) {
                         //bring watched and saved info
                         let not_saved_s = ""

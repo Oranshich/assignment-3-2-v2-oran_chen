@@ -1,14 +1,14 @@
 <template>
     <b-card no-body class="overflow-hidden" style="max-width: 540px;">
         <b-row no-gutters>
-            <b-col md="6">
+            <b-col md="3.5" class="image">
                 <router-link
                         :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
                         class="recipe-preview">
                     <b-card-img :src="recipe.image" alt="Image" class="recipe-image"></b-card-img>
                 </router-link>
             </b-col>
-            <b-col md="6" class="b-card-text">
+            <b-col md="8.5" class="b-card-text">
                 <b-card-body :title="recipe.title" class="b-card-text">
                     <b-card-text>
                         <li>{{ recipe.readyInMinutes }} minutes</li>
@@ -19,8 +19,8 @@
                         <li v-if="recipe.watched.length>0" >Recently watched : {{recipe.watched}}</li>
                         <li v-if="recipe.saved.length>0" id="save" @click="addToFavorites">Saved to favorites: {{isFavorite}}
                         </li>
-                        <li v-if="recipe.preparedBy">Prepared By: {{recipe.preparedBy}}</li>
-                        <li v-if="recipe.preparedAt">Prepared At: {{recipe.preparedAt}}</li>
+                        <li v-if="recipe.preparedBy">Prepared by: {{recipe.preparedBy}}</li>
+                        <li v-if="recipe.preparedAt">Prepared at: {{recipe.preparedAt}}</li>
                     </b-card-text>
                 </b-card-body>
             </b-col>
@@ -76,7 +76,7 @@
 <style scoped>
     .recipe-preview {
         display: inline-block;
-        width: 90%;
+        width: 80%;
         height: 100%;
         position: relative;
         margin: 10px 10px;
@@ -85,29 +85,23 @@
     }
 
     .recipe-preview > .recipe-body {
-        width: 100%;
+        width: 80%;
         height: 200px;
         position: relative;
         font-family: Calibri;
     }
 
-    .recipe-preview .recipe-body .recipe-image {
+    .recipe-preview .recipe-body {
         margin: auto;
         display: block;
-        width: 90%;
+        width: 80%;
         height: 100%;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
         font-family: Calibri;
-
     }
 
-    .recipe-footer {
-        width: 100%;
-        height: 50%;
-        overflow: hidden;
-    }
 
     .recipe-footer .recipe-title {
         padding: 10px 10px;
@@ -150,7 +144,7 @@
         box-flex: 1;
         -webkit-flex-grow: 1;
         flex-grow: 1;
-        width: 90px;
+        width: 80px;
         display: table-cell;
         text-align: center;
         font-family: Calibri;
@@ -166,4 +160,12 @@
   .recipe-image, #save{
     cursor: pointer;
   }
+    .image{
+        margin-top: 5%;
+        margin-left: 20%;
+        padding: 1% 0 0 0;
+        height: 60%;
+        width: 60%;
+    }
+
 </style>
