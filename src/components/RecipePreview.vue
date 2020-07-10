@@ -15,11 +15,9 @@
                         <li v-if="recipe.aggregateLikes">{{ recipe.aggregateLikes }} likes</li>
                         <li>Vegan: {{ recipe.vegan }}</li>
                         <li>Vegetarian: {{ recipe.vegetarian }}</li>
-                        <li>Gluten free: {{ recipe.glutenFree }}</li>
-                        <!--              <li v-if="recipe.watched !== undefined">Recently watched : {{recipe.watched}}</li>-->
-                        <!--              <li v-if="recipe.saved !== undefined">Saved to favorites: {{recipe.saved}}</li>-->
-                        <li>Recently watched : {{recipe.watched}}</li>
-                        <li id="save" @click="addToFavorites">Saved to favorites: {{isFavorite}}
+                        <li >Gluten free: {{ recipe.glutenFree }}</li>
+                        <li v-if="recipe.watched.length>0" >Recently watched : {{recipe.watched}}</li>
+                        <li v-if="recipe.saved.length>0" id="save" @click="addToFavorites">Saved to favorites: {{isFavorite}}
                         </li>
                     </b-card-text>
                 </b-card-body>
@@ -30,21 +28,21 @@
 
 <script>
     export default {
-        data() {
-            return {
-                isFavorite: this.recipe.saved
-            };
-        },
         props: {
             recipe: {
                 type: Object,
                 required: true
             }
         },
+        data() {
+            return {
+                isFavorite: false
+            };
+        },
       watch:{
-          recipe(){
-            this.isFavorite= this.recipe.saved;
-          }
+            recipe() {
+                this.isFavorite = this.recipe.saved;
+            }
       },
         methods: {
             addToFavorites(){

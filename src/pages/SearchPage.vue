@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1> Search Recipes</h1>
+        <h1 class="title"> Search Recipes</h1>
         <div class='is-icon is-searchPage' v-on:click='focus()'></div>
         <input class='is-field is-searchPage' type='text' ref='input' v-model='search_text' />
         <input class="is-button is-search-button" type="button" :value='this.text' v-on:click='searchRecipes' />

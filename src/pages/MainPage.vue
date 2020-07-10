@@ -3,7 +3,7 @@
     <b-row>
       <b-col>
         <br>
-        <h1 class="title text-center">Oran&Chen's Recipes</h1>
+        <h1 class="title text-center" style="font-size: 50px; font-weight: bold">Oran&Chen's Recipes</h1>
       </b-col>
     </b-row>
     <b-row>
@@ -48,6 +48,9 @@ export default {
   .h1{
     padding: 5%;
     margin: 5%;
+    font-weight: bold;
+    font-family: Calibri;
+    font-size: 34px;
   }
 .RandomRecipes {
   margin: 10px 0 10px;

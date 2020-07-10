@@ -1,5 +1,8 @@
 <template>
-    <recipe-preview-results title="My Favorite Recipes" :recipes="recipes"/>
+    <div>
+        <br>
+        <RecipePreviewResults title="Favorite Recipes" :recipes="recipes"/>
+    </div>
 </template>
 
 <script>
@@ -29,9 +32,8 @@
                     const recipes = response.data;
                     this.recipes = [];
                     this.recipes.push(...recipes);
+
                     if (this.$root.store.username) {
-                        this.recipes.saved = "";
-                        this.recipes.watched = "";
                         //bring watched and saved info
                         let not_saved_s = ""
                         let not_saved_a = {}
