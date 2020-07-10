@@ -99,8 +99,7 @@ export default {
     async Login() {
       try {
         const response = await this.axios.post(
-          //"http://assignment3-oranchen.herokuapp.com/login",
-            "http://localhost:3000/login",
+          "http://assignment3-oranchen.herokuapp.com/login",
           {
             username: this.form.username,
             password: this.form.password

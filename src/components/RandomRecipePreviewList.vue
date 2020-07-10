@@ -37,8 +37,7 @@
             async getRandomRecipes(){
                 try {
                     const response = await this.axios.get(
-                        //"http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
-                        "http://localhost:3000/recipes/getRandomRecipes"
+                        "http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
                     );
                     console.log(response);
                     const recipes = response.data;
@@ -74,8 +73,7 @@
                         }
                         if (not_saved_s.length > 0) {
                             const responseWatchedSaved = await this.axios.get(
-                                //"http://assignment3-oranchen.herokuapp.com/user/recipeInfo/[" +
-                                "http://localhost:3000/user/recipeInfo/[" +
+                                "http://assignment3-oranchen.herokuapp.com/user/recipeInfo/[" +
                                 not_saved_s + "]",
                                 {withCredentials: true}
                             );
