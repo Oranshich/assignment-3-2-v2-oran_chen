@@ -27,11 +27,11 @@
         async created() {
             await this.getRandomRecipes();
         },
-        watch:{
-          async recipes(){
-              await this.getUserInformation();
-          }
-        },
+        // watch:{
+        //   async recipes(){
+        //       await this.getUserInformation();
+        //   }
+        // },
 
         methods:{
             async getRandomRecipes(){
