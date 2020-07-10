@@ -18,8 +18,8 @@
                         <li>Gluten free: {{ recipe.glutenFree }}</li>
                         <!--              <li v-if="recipe.watched !== undefined">Recently watched : {{recipe.watched}}</li>-->
                         <!--              <li v-if="recipe.saved !== undefined">Saved to favorites: {{recipe.saved}}</li>-->
-                        <li v-if="recipe.watched !== undefined">Recently watched : {{recipe.watched}}</li>
-                        <li id="save" v-if="recipe.saved !== undefined" @click="addToFavorites">Saved to favorites: {{isFavorite}}
+                        <li >Recently watched : {{recipe.watched}}</li>
+                        <li id="save" @click="addToFavorites">Saved to favorites: {{isFavorite}}
                         </li>
                     </b-card-text>
                 </b-card-body>
@@ -163,7 +163,7 @@
   #save:hover{
     color:blue;
   }
-  .recipe-image{
+  .recipe-image, #save{
     cursor: pointer;
   }
 </style>
