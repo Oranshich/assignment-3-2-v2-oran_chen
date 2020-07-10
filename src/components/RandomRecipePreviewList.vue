@@ -1,5 +1,8 @@
 <template>
-    <RecipePreviewList title="Random Recipes" :recipes="recipes"/>
+    <div>
+        <RecipePreviewList title="Random Recipes" :recipes="recipes"/>
+        <b-button  style="width:80px;display:block;" class="mx-auto w-25" variant="outline-primary" @click="updateRecipes">More</b-button>
+    </div>
 </template>
 
 <script>
@@ -28,9 +31,9 @@
             async updateRecipes() {
                 try {
                     const response = await this.axios.get(
-                             "https://test-for-3-2.herokuapp.com/recipes/"
+                        //"https://test-for-3-2.herokuapp.com/recipes/"
                         // "http://localhost:3000/recipes/getRandomRecipes"
-                       // "http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
+                        "http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
                     );
                     console.log(response);
                     const recipes = response.data;

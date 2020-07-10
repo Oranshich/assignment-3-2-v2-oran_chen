@@ -75,6 +75,9 @@
                     );
 
                     const recipes = response.data;
+                    if(recipes){
+                        alert("Didnt find any results for your search");
+                    }
                     this.recipes = [];
                     this.recipes.push(...recipes);
 
