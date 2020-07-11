@@ -4,16 +4,11 @@
             <div class="recipe-header mt-3 mb-4">
                 <div class="text">{{ recipe.title }}</div>
                 <img :src="recipe.image" class="center"/>
+                <br>
+                <RecipePreviewUserInfo class="RecipePreviewUserInfo" :recipe="recipe" align="center"/>
             </div>
             <div class="recipe-body">
                 <div class="upper">
-                    <!--            <div class="mb-3">-->
-                    <!--              <div>Ready in {{ recipe.readyInMinutes }} minutes</div>-->
-                    <!--              <div>Likes: {{ recipe.aggregateLikes }} likes</div>-->
-                    <!--              <div>Vegetarian: {{ recipe.vegetarian }} </div>-->
-                    <!--              <div>Vegan: {{ recipe.vegan }} </div>-->
-                    <!--              <div>Gluten Free: {{ recipe.glutenFree }} </div>-->
-                    <!--              <div>Servings: {{ recipe.servings }} </div>-->
                     <div class="titles_all_containers">
                         <ul class="table_container">
                             <li v-if="recipe.aggregateLikes" class="titleContainer">
@@ -74,17 +69,18 @@
                     </div>
                 </div>
             </div>
-            <!-- <pre>
-            {{ $route.params }}
-            {{ recipe }}
-          </pre
-            > -->
         </div>
     </div>
 </template>
 
 <script>
+    import RecipePreviewUserInfo from "../components/RecipePreviewUserInfo";
+
     export default {
+        name: "RecipeViewPage",
+        components:{
+            RecipePreviewUserInfo
+        },
         data() {
             return {
                 recipe: null
