@@ -21,14 +21,14 @@
         async created() {
             await this.getRandomRecipes();
         },
-        async mounted(){
-            await this.getUserInformation();
-        },
-        // watch:{
-        //   async recipes(){
-        //
-        //   }
+        // async mounted(){
+        //     await this.getUserInformation();
         // },
+        watch:{
+           recipes:async function(){
+               await this.getUserInformation();
+          }
+        },
 
         methods:{
             async getRandomRecipes(){
