@@ -96,7 +96,7 @@
                 let responseView;
 
                 try {
-                    if (this.$route.params.recipeId.length <= 6) {
+                    if (this.$route.params.recipeId.toString().length <= 6) {
                         response = await this.axios.get(
                             "http://assignment3-oranchen.herokuapp.com/recipes/recipeInformation",
                             {

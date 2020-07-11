@@ -3,8 +3,8 @@
         <b-row no-gutters>
             <b-col md="3.5" class="image">
                 <router-link
-                        :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
-                        class="recipe-preview">
+                    :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+                    class="recipe-preview">
                     <b-card-img :src="recipe.image" alt="Image" class="recipe-image"></b-card-img>
                 </router-link>
             </b-col>
@@ -16,8 +16,8 @@
                         <li>Vegan: {{ recipe.vegan }}</li>
                         <li>Vegetarian: {{ recipe.vegetarian }}</li>
                         <li >Gluten free: {{ recipe.glutenFree }}</li>
-                        <li v-if="recipe.watched.length>0" >Recently watched : {{recipe.watched}}</li>
-                        <li v-if="recipe.saved.length>0" id="save" @click="addToFavorites">Saved to favorites: {{isFavorite}}
+                        <li>Recently watched : {{recipe.watched ? 'true' : 'false'}}</li>
+                        <li  id="save" @click="addToFavorites">Saved to favorites: {{isFavorite ? 'true' : 'false'}}
                         </li>
                         <li v-if="recipe.preparedBy">Prepared by: {{recipe.preparedBy}}</li>
                         <li v-if="recipe.preparedAt">Prepared at: {{recipe.preparedAt}}</li>
@@ -38,17 +38,26 @@
         },
         data() {
             return {
-                isFavorite: false
+                isFavorite: this.recipe.saved,
+                isWatched: this.recipe.watched
             };
         },
-      watch:{
-            recipe() {
+        mounted() {
+            this.isFavorite = this.recipe.saved;
+            this.isWatched = this.recipe.watched;
+            //console.log("is favorite " + this.isFavorite.length())
+            //console.log(this.recipe.watched.length);
+        },
+        watch:{
+            recipe:function() {
                 this.isFavorite = this.recipe.saved;
+
+                this.isWatched = this.recipe.watched;
             }
-      },
+        },
         methods: {
             addToFavorites(){
-              debugger
+                debugger
                 if (this.isFavorite === false) {
                     try {
                         let response = this.axios.post(
@@ -154,12 +163,12 @@
         font-family: Calibri;
         font-size: 10pt;
     }
-  #save:hover{
-    color:blue;
-  }
-  .recipe-image, #save{
-    cursor: pointer;
-  }
+    #save:hover{
+        color:blue;
+    }
+    .recipe-image, #save{
+        cursor: pointer;
+    }
     .image{
         margin-top: 5%;
         margin-left: 20%;
