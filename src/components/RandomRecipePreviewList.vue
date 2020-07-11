@@ -1,6 +1,6 @@
 <template>
     <div>
-        <RecipePreviewList title="Random Recipes" :recipes="recipes"/>
+        <RecipePreviewList title="Check out these recipes" :recipes="recipes"/>
         <b-button  style="width:60px;display: block;" class="mx-auto w-25" variant="primary" @click="getRandomRecipes">More</b-button>
     </div>
 </template>

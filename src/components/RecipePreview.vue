@@ -138,5 +138,8 @@
         height: 80%;
         width: 80%;
     }
+    .RecipePreviewUserInfo{
+        padding-right: 2%;
+    }
 
 </style>
