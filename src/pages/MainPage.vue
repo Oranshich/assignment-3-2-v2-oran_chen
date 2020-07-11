@@ -9,7 +9,6 @@
     <b-row>
       <b-col>
         <RandomRecipePreviewList title="Explore these recipes" class="RandomRecipes center" />
-<!--        <b-button  style="width:80px;display:block;" class="mx-auto w-25" variant="outline-primary">More</b-button>-->
       </b-col>
       <b-col v-if="$root.store.username">
         <LastViewedRecipePreviewList
