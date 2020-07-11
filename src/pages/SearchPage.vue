@@ -78,7 +78,7 @@
 
                     const recipes = response.data;
                     if(recipes.length === 0){
-                        alert("Didnt find any results for your search");
+                        this.$root.toast("Search Results", "Didnt find any results for your search", "warning");
                     }
                     this.recipes = [];
                     this.recipes.push(...recipes);
