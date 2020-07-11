@@ -1,24 +1,25 @@
 <template>
     <b-card no-body class="overflow-hidden" style="max-width: 540px;">
         <b-row no-gutters>
-            <b-col md="3.5" class="image">
+            <b-col md="8" class="image">
                 <router-link
                     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
                     class="recipe-preview">
                     <b-card-img :src="recipe.image" alt="Image" class="recipe-image"></b-card-img>
                 </router-link>
             </b-col>
-            <b-col md="8.5" class="b-card-text">
+            <b-col md="1">
+                <br>
+                <RecipePreviewUserInfo class="RecipePreviewUserInfo" :recipe="recipe" />
+            </b-col>
+            <b-col md="8" class="b-card-text">
                 <b-card-body :title="recipe.title" class="b-card-text">
                     <b-card-text>
-                        <li>{{ recipe.readyInMinutes }} minutes</li>
-                        <li v-if="recipe.aggregateLikes">{{ recipe.aggregateLikes }} likes</li>
-                        <li>Vegan: {{ recipe.vegan }}</li>
-                        <li>Vegetarian: {{ recipe.vegetarian }}</li>
-                        <li >Gluten free: {{ recipe.glutenFree }}</li>
-                        <li>Recently watched : {{recipe.watched ? 'true' : 'false'}}</li>
-                        <li  id="save" @click="addToFavorites">Saved to favorites: {{isFavorite ? 'true' : 'false'}}
-                        </li>
+                        <li>Ready in: {{ recipe.readyInMinutes }} minutes</li>
+                        <li v-if="recipe.aggregateLikes">{{ recipe.aggregateLikes }} likes this recipe</li>
+                        <li>Vegan: {{ recipe.vegan === true ? "Yes" : "No" }}</li>
+                        <li>Vegetarian: {{ recipe.vegetarian === true ? "Yes" : "No" }}</li>
+                        <li >Gluten free: {{ recipe.glutenFree === true ? "Yes" : "No" }}</li>
                         <li v-if="recipe.preparedBy">Prepared by: {{recipe.preparedBy}}</li>
                         <li v-if="recipe.preparedAt">Prepared at: {{recipe.preparedAt}}</li>
                     </b-card-text>
@@ -29,56 +30,20 @@
 </template>
 
 <script>
+    import RecipePreviewUserInfo from "./RecipePreviewUserInfo";
+
     export default {
+        name: "RecipePreview",
+        components:{
+            RecipePreviewUserInfo
+        },
         props: {
             recipe: {
                 type: Object,
                 required: true
             }
-        },
-        data() {
-            return {
-                isFavorite: this.recipe.saved,
-                isWatched: this.recipe.watched
-            };
-        },
-        mounted() {
-            this.isFavorite = this.recipe.saved;
-            this.isWatched = this.recipe.watched;
-            //console.log("is favorite " + this.isFavorite.length())
-            //console.log(this.recipe.watched.length);
-        },
-        watch:{
-            recipe:function() {
-                this.isFavorite = this.recipe.saved;
-
-                this.isWatched = this.recipe.watched;
-            }
-        },
-        methods: {
-            addToFavorites(){
-                debugger
-                if (this.isFavorite === false) {
-                    try {
-                        let response = this.axios.post(
-                            "http://assignment3-oranchen.herokuapp.com/user/addRecipeToFavorites",
-                            {
-                                recipe_id: this.recipe.id
-                            },
-                            {withCredentials: true}
-                        );
-                        console.log("response.status", response.status);
-                        this.isFavorite = true;
-                        this.$root.store.recipes_info[this.recipe.id] = {
-                            "watched": this.recipe.id.watched,
-                            "saved": true
-                        };
-                    } catch (error) {
-                        console.log("error.response.status", error.response.status);
-                    }
-                }
-            }
         }
+
     };
 </script>
 
@@ -88,7 +53,7 @@
         width: 80%;
         height: 100%;
         position: relative;
-        margin: 10px 10px;
+        /*margin: 10px 10px;*/
         font-family: Calibri;
 
     }
@@ -163,18 +128,15 @@
         font-family: Calibri;
         font-size: 10pt;
     }
-    #save:hover{
-        color:blue;
-    }
-    .recipe-image, #save{
+    .recipe-image:hover{
         cursor: pointer;
     }
     .image{
-        margin-top: 5%;
+        /*margin-top: 5%;*/
         margin-left: 20%;
         padding: 1% 0 0 0;
-        height: 60%;
-        width: 60%;
+        height: 80%;
+        width: 80%;
     }
 
 </style>
