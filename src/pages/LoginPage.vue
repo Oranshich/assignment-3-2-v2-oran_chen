@@ -112,7 +112,7 @@ export default {
         this.$router.push("/").catch((err) => {});
       } catch (err) {
         console.log(err.response);
-        this.form.submitError = err.response.data.message;
+        this.form.submitError = err.response.data.error.message;
       }
     },
     onLogin() {

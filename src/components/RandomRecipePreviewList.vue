@@ -1,5 +1,8 @@
 <template>
-    <RecipePreviewList title="Random Recipes" :recipes="recipes"/>
+    <div>
+        <RecipePreviewList title="Random Recipes" :recipes="recipes"/>
+        <b-button  style="width:60px;display: block;" class="mx-auto w-25" variant="primary" @click="getRandomRecipes">More</b-button>
+    </div>
 </template>
 
 <script>
@@ -10,51 +13,35 @@
         components: {
             RecipePreviewList
         },
-        // props: {
-        //     title: {
-        //         type: String,
-        //         required: true
-        //     }
-        // },
         data() {
             return {
                 recipes: []
             };
         },
-        mounted() {
-            this.updateRecipes();
+        async created() {
+            await this.getRandomRecipes();
         },
-        methods: {
-            async updateRecipes() {
+        methods:{
+            async getRandomRecipes(){
                 try {
                     const response = await this.axios.get(
-                        //     "https://test-for-3-2.herokuapp.com/recipes/random"
-                        // "http://localhost:3000/recipes/getRandomRecipes"
                         "http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
                     );
                     console.log(response);
                     const recipes = response.data;
                     this.recipes = [];
                     this.recipes.push(...recipes);
-                    //bring watched and saved info
-                    const responseWatchedSaved = await this.axios.get(
-                        "http://assignment3-oranchen.herokuapp.com/user/recipeInfo/[" +
-                        this.recipes[0].id + "," + this.recipes[1].id + "," + this.recipes[2].id +"]",
-                        {withCredentials:true}
-                    );
-                    console.log(responseWatchedSaved);
-                    for(let i = 0; i <this.recipes.length; i++){
-                        this.recipes[i].watched = responseWatchedSaved.data[this.recipes[i].id].watched;
-                        this.recipes[i].saved = responseWatchedSaved.data[this.recipes[i].id].saved;
+                    for (let i = 0; i < this.recipes.length; i++) {
+                        this.recipes[i].watched = "";
+                        this.recipes[i].saved = "";
                     }
-                    console.log(this.recipes);
+                    await this.getUserInformation();
                 } catch (error) {
                     console.log(error);
                 }
             }
         }
-    };
-
+    }
 
 
 </script>

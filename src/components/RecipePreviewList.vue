@@ -12,27 +12,27 @@
 </template>
 
 <script>
-import RecipePreview from "./RecipePreview.vue";
-export default {
-  name: "RecipePreviewList",
-  components: {
-    RecipePreview
-  },
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    recipes: {
-      type: Array,
-      required: true
-    }
-  }
-};
+    import RecipePreview from "./RecipePreview.vue";
+    export default {
+        name: "RecipePreviewList",
+        components: {
+            RecipePreview
+        },
+        props: {
+            title: {
+                type: String,
+                required: true
+            },
+            recipes: {
+                type: Array,
+                required: true
+            }
+        }
+    };
 </script>
 
 <style lang="scss" scoped>
-.container {
-  min-height: 400px;
-}
+  .container {
+    min-height: 400px;
+  }
 </style>

@@ -5,8 +5,9 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 import routes from "./routes";
 import VueCookies from "vue-cookies";
+import VueSessionStorage from 'vue-sessionstorage';
 Vue.use(VueCookies);
-
+Vue.use(VueSessionStorage);
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -31,6 +32,7 @@ const router = new VueRouter({
 // });
 
 import Vuelidate from "vuelidate";
+//import Multiselect from 'vue-multiselect';
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import {
@@ -58,7 +60,7 @@ import {
   LayoutPlugin,
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
-
+//Vue.component(Multiselect);
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
@@ -88,6 +90,7 @@ Vue.config.productionTip = false;
 
 const shared_data = {
   username: localStorage.username,
+  recipes_info: {},
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;
