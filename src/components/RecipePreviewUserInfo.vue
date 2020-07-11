@@ -17,16 +17,21 @@
             return {
                 myRecipe: this.recipe,
                 isFavorite: false,
-                isWatched: false
+                isWatched: false,
             }
         },
         async mounted() {
             await this.getUserInformation();
         },
+        computed: {
+           username: function(){
+                return this.$root.store.username
+            }
+        },
         methods: {
             async getUserInformation() {
                 try {
-                    if (this.$root.store.username && this.myRecipe.id.toString().length<=6) {
+                    if (this.$root.store.username && this.myRecipe.id.toString().length<=10) {
                         //bring watched and saved info
                         if (this.myRecipe.id in this.$root.store.recipes_info) {
                             this.myRecipe.watched = this.$root.store.recipes_info[this.myRecipe.id]["watched"];
@@ -80,6 +85,11 @@
                         console.log("error.response.status", error.response.status);
                     }
                 }
+            }
+        },
+        watch:{
+            async username(){
+                await this.getUserInformation();
             }
         }
     }
