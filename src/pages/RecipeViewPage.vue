@@ -5,7 +5,7 @@
                 <div class="text">{{ recipe.title }}</div>
                 <img :src="recipe.image" class="center"/>
                 <br>
-                <RecipePreviewUserInfo class="RecipePreviewUserInfo" :recipe="recipe" align="center"/>
+                <RecipePreviewUserInfo v-if="recipe.aggregateLikes" class="RecipePreviewUserInfo" :recipe="recipe" align="center"/>
             </div>
             <div class="recipe-body">
                 <div class="upper">
@@ -92,7 +92,7 @@
                 let responseView;
 
                 try {
-                    if (this.$route.params.recipeId.toString().length <= 6) {
+                    if (this.$route.params.recipeId.toString().length <= 10) {
                         response = await this.axios.get(
                             "http://assignment3-oranchen.herokuapp.com/recipes/recipeInformation",
                             {
@@ -118,6 +118,10 @@
                             {withCredentials: true}
                         );
                         console.log("response.status", responseView.status);
+                        this.$root.store.recipes_info[response.data.id] = {
+                            "watched": true,
+                            "saved": this.recipe.saved
+                        };
                     }
                 } catch (error) {
                     console.log("error.response.status", error.response.status);
@@ -265,11 +269,11 @@
         font-family: "Calibri";
         background-color: white;
         color: black;
-        font-size: 36px; /* Responsive font size */
+        font-size: 32px; /* Responsive font size */
         font-weight: bold;
         margin: 0 auto; /* Center the text container */
         padding: 10px;
-        width: 40%;
+        width: 45%;
         text-align: center; /* Center text */
         position: absolute; /* Position text */
         top: 20%; /* Position text in the middle */

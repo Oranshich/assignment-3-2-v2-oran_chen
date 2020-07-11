@@ -1,38 +1,41 @@
 <template>
-    <div class="container">
-        <br>
-        <h1 class="title"> Search Recipes</h1>
-        <div class='is-icon is-searchPage' v-on:click='focus()'></div>
-        <input class='is-field is-searchPage' type='text' ref='input' v-model='search_text' />
-        <input class="is-button is-search-button" type="button" :value='this.text' v-on:click='searchRecipes' />
-        <div class="numOptions">
-            <b-form-select v-model="num" :options="numOptions" size="sm" class="mt-3" ></b-form-select>
+    <div>
+        <div class="container">
+            <h1 class="title"> Search Recipes</h1>
+            <div class='is-icon is-searchPage' v-on:click='focus()'></div>
+            <input class='is-field is-searchPage' type='text' ref='input' v-model='search_text' size="42"/>
+            <input class="is-button is-search-button" type="button" :value='this.text' v-on:click='searchRecipes'/>
+            <div class="numOptions">
+                <b-form-select v-model="num" :options="numOptions" size="md" class="mt-5"></b-form-select>
+            </div>
+            <SearchFiltering v-on:childToParent="onFilter"></SearchFiltering>
         </div>
-        <SearchFiltering v-on:childToParent="onFilter"></SearchFiltering>
         <br>
-        <SearchResult title="Search Results" :recipes="recipes" />
+        <SearchResult title="Search Results" style="font-weight: bold" :recipes="recipes"/>
     </div>
+
 </template>
 
 <script>
     import SearchFiltering from "../components/SearchFiltering";
     import SearchResult from "../components/SearchResult";
+
     export default {
-        name : 'searchPage',
+        name: 'searchPage',
         components: {
             SearchResult,
             SearchFiltering
         },
-        data(){
-            return{
+        data() {
+            return {
                 search_text: "",
-                recipes:[],
+                recipes: [],
                 num: '5',
                 numOptions: [
-                    { value: '5', text: 'Please select number of recipes' },
-                    { value: '5', text: '5' },
-                    { value: '10', text: '10' },
-                    { value: '15', text: '15' }
+                    {value: '5', text: 'Please select number of recipes'},
+                    {value: '5', text: '5'},
+                    {value: '10', text: '10'},
+                    {value: '15', text: '15'}
                 ],
                 filterCuisine: [],
                 filterDiet: [],
@@ -48,23 +51,23 @@
 
         },
 
-        props:{
-            "text":{
+        props: {
+            "text": {
                 type: String,
-                default : "Search"
+                default: "Search"
             }
         },
 
 
-        methods : {
-            clickOn : function() {
+        methods: {
+            clickOn: function () {
                 // Execute request
                 this.fetch();
             },
 
             async searchRecipes() {
 
-                if(this.$session.exists('sortOption')){
+                if (this.$session.exists('sortOption')) {
                     this.$session.remove('sortOption');
                 }
                 let filerText = this.getFilters();
@@ -77,7 +80,7 @@
                     );
 
                     const recipes = response.data;
-                    if(recipes.length === 0){
+                    if (recipes.length === 0) {
                         this.$root.toast("Search Results", "Didnt find any results for your search", "warning");
                     }
                     this.recipes = [];
@@ -87,15 +90,15 @@
                     this.$session.set('searchText', this.search_text);
                     this.$session.set('searchNum', this.num);
 
-                    if(this.filterCuisine){
+                    if (this.filterCuisine) {
                         this.$session.set('cuisine', this.filterCuisine);
                     }
 
-                    if(this.filterCuisine){
+                    if (this.filterCuisine) {
                         this.$session.set('intolerance', this.filterIntolerance);
 
                     }
-                    if(this.filterDiet){
+                    if (this.filterDiet) {
                         this.$session.set('diet', this.filterDiet);
 
                     }
@@ -105,57 +108,54 @@
                     console.log(error);
                 }
             },
-            limitText (count) {
+            limitText(count) {
                 return `and ${count} other countries`
             },
-            getFilters(){
+            getFilters() {
                 debugger
                 let filterText = "";
-                for(let i =0; i < this.filterCuisine.length; i++){
+                for (let i = 0; i < this.filterCuisine.length; i++) {
                     filterText = filterText + "cuisine=" + this.filterCuisine[i].name + "&";
                 }
 
-                for(let i =0; i < this.filterDiet.length; i++){
+                for (let i = 0; i < this.filterDiet.length; i++) {
                     filterText = filterText + "diet=" + this.filterDiet[i].name + "&";
                 }
 
-                for(let i =0; i < this.filterIntolerance.length; i++){
+                for (let i = 0; i < this.filterIntolerance.length; i++) {
                     filterText = filterText + "intolerance=" + this.filterIntolerance[i].name + "&";
                 }
 
-                if(filterText.length > 0){
-                    return filterText.substring(0,filterText.length-1);
+                if (filterText.length > 0) {
+                    return filterText.substring(0, filterText.length - 1);
                 }
                 return filterText;
             },
 
-            onFilter(value){
-                if(value.name === 'cuisine'){
+            onFilter(value) {
+                if (value.name === 'cuisine') {
                     //console.log(value.value[0].name);
                     this.filterCuisine = value.value;
-                }
-                else if(value.name === 'diet'){
+                } else if (value.name === 'diet') {
                     this.filterDiet = value.value;
-                }
-                else{
+                } else {
                     this.filterIntolerance = value.value;
                 }
             },
-            updateFields(){
-                if(this.$session.exists('resultFiltered')){
+            updateFields() {
+                if (this.$session.exists('resultFiltered')) {
                     const recipes = this.$session.get('resultFiltered');
                     this.recipes.push(...recipes);
-                }
-                else if(this.$session.exists('searchResult')){
+                } else if (this.$session.exists('searchResult')) {
                     const recipes = this.$session.get('searchResult');
                     this.recipes.push(...recipes);
                 }
 
-                if(this.$session.exists('searchText')){
+                if (this.$session.exists('searchText')) {
                     this.search_text = this.$session.get('searchText');
                 }
 
-                if(this.$session.exists('searchNum')){
+                if (this.$session.exists('searchNum')) {
                     this.num = this.$session.get('searchNum');
                 }
             }
@@ -166,10 +166,19 @@
 <style lang="scss" scoped>
     .container {
         align-items: center;
-        width: 100%;
+        left-margin: 30%;
+        background: blanchedalmond;
+        opacity: 80%;
+        width: 50%;
+        alignment: center;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        margin-top: 2%;
     }
-    .numOptions{
+    .numOptions {
         align-items: center;
         width: 400px;
+        left-margin: 30%;
     }
+
 </style>

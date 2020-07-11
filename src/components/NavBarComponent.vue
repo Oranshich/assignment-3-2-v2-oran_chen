@@ -19,6 +19,14 @@
                 exact> Search
             </router-link>
           </b-nav-item>
+          <b-nav-item>
+            <router-link
+                    tag="a"
+                    active-class="active"
+                    :to="{ name: 'about' }"
+                    exact> About
+            </router-link>
+          </b-nav-item>
           <b-nav-item-dropdown v-if="$root.store.username" text="Personal Area" right>
             <b-dropdown-item>
               <router-link
@@ -47,7 +55,7 @@
           </b-nav-item-dropdown>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
-          <b-dropdown variant="primary" v-if="!$root.store.username" id="dropdown-right" right text="Guest">
+          <b-dropdown variant="primary" v-if="!$root.store.username" id="dropdown-right" right text="Hello, guest">
             <b-dropdown-item>
               <router-link
                   tag="a"
@@ -65,7 +73,7 @@
               </router-link>
             </b-dropdown-item>
           </b-dropdown>
-          <b-dropdown v-if="$root.store.username" variant="primary" id="dropdown-right" :text=$root.store.username right>
+          <b-dropdown v-if="$root.store.username" variant="primary" id="dropdown-right" right :text=$root.store.username>
             <b-dropdown-item @click="Logout" href="#">Logout</b-dropdown-item>
           </b-dropdown>
         </b-navbar-nav>

@@ -1,13 +1,19 @@
 <template>
     <div id="back">
-        <h1>About us</h1>
+       <h1 align="center">About us</h1>
+
         <div class="text-center">
-            <p>Welcome to our recipes website</p>
-            <p>This website was created by Chen Galed and Oran Shichman</p>
-            <p>Check out out previous works: </p>
+            <p>Welcome to our recipes website!</p>
+            <p>This website was created by Chen Galed and Oran Shichman.</p>
+            <br>
+            <p>Check out our previous works: </p>
             <a href="https://sise-web-development-environments.github.io/assignment2-oran-chen/">Pacman online game</a>
+            <br>
             <a href="https://sise-web-development-environments.github.io/203388426/">Oran's personal website</a>
+            <br>
             <a href="https://sise-web-development-environments.github.io/311123541/">Chen's personal website</a>
+            <br>
+            <br>
             <p>Hope you would enjoy our website &#128540; </p>
         </div>
 
@@ -22,18 +28,25 @@
 
 <style scoped>
     #back{
-        background: white;
+        background: blanchedalmond;
+        opacity: 70%;
+        width: 50%;
+        alignment: center;
+        margin-left: 27%;
+        margin-top: 2%;
     }
     .text-center{
-        font-family: "Calibri Light";
-        font-weight: bold;
+        font-family: "Berlin Sans FB";
         font-size: 20px;
 
     }
     h1{
-        font-family: "Calibri";
+        padding-top: 1%;
+        font-family: "Berlin Sans FB";
         font-weight: bold;
-        font-size: 30px;
+        font-size: 40px;
         color: blue;
+        display: flex;
+        margin-left: 38%;
     }
 </style>

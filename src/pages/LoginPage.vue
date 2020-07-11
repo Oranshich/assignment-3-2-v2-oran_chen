@@ -50,7 +50,7 @@
       >
       <div class="mt-2">
         Do not have an account yet?
-        <router-link to="register"> Register in here</router-link>
+        <router-link to="register"> Register here</router-link>
       </div>
     </b-form>
     <b-alert
@@ -130,7 +130,15 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.container {
-  max-width: 400px;
-}
+  .container {
+    max-width: 500px;
+    background: blanchedalmond;
+    opacity: 70%;
+    width: 80%;
+    alignment: center;
+    margin-top: 2%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    font-weight: bold;
+  }
 </style>

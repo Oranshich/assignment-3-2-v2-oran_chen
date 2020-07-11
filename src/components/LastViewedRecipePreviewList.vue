@@ -1,5 +1,5 @@
 <template>
-    <RecipePreviewList title="Last Viewed Recipes"  :recipes="this.recipes"/>
+    <RecipePreviewList title="Your last viewed recipes"  :recipes="this.recipes"/>
 </template>
 
 <script>
