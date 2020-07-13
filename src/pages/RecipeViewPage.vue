@@ -106,29 +106,26 @@
                             {withCredentials: true}
                         );
                     }
-                    console.log("response.status", response.status);
-                    console.log(response);
+
                     if (response.status !== 200) this.$router.replace("/NotFound");
                     else if (this.$root.store.username) {
-                        responseView = this.axios.post(
+                        responseView = await this.axios.post(
                             "http://assignment3-oranchen.herokuapp.com/user/viewRecipe",
                             {
                                 recipe_id: response.data.id
                             },
                             {withCredentials: true}
                         );
-                        console.log("response.status", responseView.status);
-                        this.$root.store.recipes_info[response.data.id] = {
-                            "watched": true,
-                            "saved": this.recipe.saved
-                        };
+                        this.$root.store.recipes_info[response.data.id].watched = true;
+
                     }
                 } catch (error) {
-                    console.log("error.response.status", error.response.status);
-                    this.$router.replace("/NotFound");
+                    console.log("error.response.status", error);
+                    this.$router.replace("/NotFound");ד
                     return;
                 }
                 let {
+                    id,
                     title,
                     vegetarian,
                     vegan,
@@ -142,6 +139,7 @@
                 } = response.data;
 
                 let _recipe = {
+                    id,
                     title,
                     vegetarian,
                     vegan,
