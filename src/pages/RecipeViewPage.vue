@@ -109,6 +109,7 @@
 
                     if (response.status !== 200) this.$router.replace("/NotFound");
                     else if (this.$root.store.username) {
+                        console.log("response.data.id" + response.data.id);
                         responseView = await this.axios.post(
                             "http://assignment3-oranchen.herokuapp.com/user/viewRecipe",
                             {
@@ -120,8 +121,8 @@
 
                     }
                 } catch (error) {
-                    console.log("error.response.status", error);
-                    this.$router.replace("/NotFound");ד
+                    console.log("error.response.status", error.response.data);
+                    this.$router.replace("/NotFound");
                     return;
                 }
                 let {

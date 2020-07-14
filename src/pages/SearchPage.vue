@@ -86,21 +86,23 @@
                     this.recipes = [];
                     this.recipes.push(...recipes);
 
-                    this.$session.set('searchResult', recipes);
-                    this.$session.set('searchText', this.search_text);
-                    this.$session.set('searchNum', this.num);
+                    if(this.$root.store.username) {
+                        this.$session.set('searchResult', recipes);
+                        this.$session.set('searchText', this.search_text);
+                        this.$session.set('searchNum', this.num);
 
-                    if (this.filterCuisine) {
-                        this.$session.set('cuisine', this.filterCuisine);
-                    }
+                        if (this.filterCuisine) {
+                            this.$session.set('cuisine', this.filterCuisine);
+                        }
 
-                    if (this.filterCuisine) {
-                        this.$session.set('intolerance', this.filterIntolerance);
+                        if (this.filterCuisine) {
+                            this.$session.set('intolerance', this.filterIntolerance);
 
-                    }
-                    if (this.filterDiet) {
-                        this.$session.set('diet', this.filterDiet);
+                        }
+                        if (this.filterDiet) {
+                            this.$session.set('diet', this.filterDiet);
 
+                        }
                     }
 
                     // console.log(this.recipes);
