@@ -1,7 +1,7 @@
 <template>
    <div class="container" style="min-width: 800px;">
         <h3>
-            {{ title }}:
+            {{ title }}
         </h3>
         <b-row cols-md="12" v-for="group in splitRecipes()" :key="group.index">
             <b-col md="4" v-for="r in group" :key="r.id">
