@@ -3,8 +3,8 @@
         <h3>
             {{ title }}:
         </h3>
-        <b-row v-for="group in splitRecipes()" :key="group.index">
-            <b-col v-for="r in group" :key="r.id">
+        <b-row cols-md="12" v-for="group in splitRecipes()" :key="group.index">
+            <b-col md="4" v-for="r in group" :key="r.id">
                 <RecipePreview class="recipePreview" :recipe="r" />
             </b-col>
         </b-row>
@@ -62,7 +62,8 @@
 
 <style lang="scss" scoped>
     .container {
-        min-height: 400px;
+        min-height: 300px;
+        width:100%
     }
 
 </style>
