@@ -1,16 +1,16 @@
 <template>
     <b-card no-body class="overflow-hidden" style="max-width: 540px;">
         <b-row no-gutters>
+            <b-col md="1" class="RecipePreviewUserInfo">
+                <RecipePreviewUserInfo :recipe="recipe" />
+            </b-col>
             <b-col md="8" class="image">
                 <router-link
-                    :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
-                    class="recipe-preview">
-                    <b-card-img :src="recipe.image" alt="Image" class="recipe-image"></b-card-img>
+                        :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+                        class="recipe-preview" exact >
+                    <b-card-img :src="recipe.image" alt="Image" class="recipe-image">
+                    </b-card-img>
                 </router-link>
-            </b-col>
-            <b-col md="1">
-                <br>
-                <RecipePreviewUserInfo class="RecipePreviewUserInfo" :recipe="recipe" />
             </b-col>
             <b-col md="8" class="b-card-text">
                 <b-card-body :title="recipe.title" class="b-card-text">
@@ -42,8 +42,7 @@
                 type: Object,
                 required: true
             }
-        },
-
+        }
     };
 </script>
 
@@ -130,16 +129,19 @@
     }
     .recipe-image:hover{
         cursor: pointer;
+
     }
     .image{
-        /*margin-top: 5%;*/
-        margin-left: 20%;
+        margin-top: 3%;
+        margin-left: 15%;
         padding: 1% 0 0 0;
         height: 80%;
         width: 80%;
+        alignment: center;
     }
     .RecipePreviewUserInfo{
         padding-right: 2%;
+        margin-top: 3%;
     }
 
 </style>
