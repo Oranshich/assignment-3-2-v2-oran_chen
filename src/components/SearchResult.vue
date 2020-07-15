@@ -62,8 +62,11 @@
                     } else if (this.filters.name === 'Preparation Time') {
                         this.results.sort((a, b) => a.readyInMinutes - b.readyInMinutes);
                     }
-                    this.$session.set('resultFiltered', this.results);
-                    this.$session.set('sortOption', this.filters);
+
+                    if(this.$root.store.username){
+                        this.$session.set('resultFiltered', this.results);
+                        this.$session.set('sortOption', this.filters);
+                    }
                 }
                 else{
                     this.results = [];

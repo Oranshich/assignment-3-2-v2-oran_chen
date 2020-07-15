@@ -90,7 +90,6 @@
             try {
                 let response;
                 let responseView;
-
                 try {
                     if (this.$route.params.recipeId.toString().length <= 10) {
                         response = await this.axios.get(
@@ -99,6 +98,17 @@
                                 params: {recipe_id: this.$route.params.recipeId}
                             }
                         );
+                        if (this.$root.store.username ) {
+                            responseView = await this.axios.post(
+                                "http://assignment3-oranchen.herokuapp.com/user/viewRecipe",
+                                {
+                                    recipe_id: response.data.id
+                                },
+                                {withCredentials: true}
+                            );
+                            this.$root.store.recipes_info[response.data.id].watched = true;
+
+                        }
                     } else {
                         response = await this.axios.get(
                             "http://assignment3-oranchen.herokuapp.com/user/getMyFullRecipes/" +
@@ -106,29 +116,15 @@
                             {withCredentials: true}
                         );
                     }
-                    console.log("response.status", response.status);
-                    console.log(response);
+
                     if (response.status !== 200) this.$router.replace("/NotFound");
-                    else if (this.$root.store.username) {
-                        responseView = this.axios.post(
-                            "http://assignment3-oranchen.herokuapp.com/user/viewRecipe",
-                            {
-                                recipe_id: response.data.id
-                            },
-                            {withCredentials: true}
-                        );
-                        console.log("response.status", responseView.status);
-                        this.$root.store.recipes_info[response.data.id] = {
-                            "watched": true,
-                            "saved": this.recipe.saved
-                        };
-                    }
                 } catch (error) {
-                    console.log("error.response.status", error.response.status);
+                    console.log("error.response.status", error);
                     this.$router.replace("/NotFound");
                     return;
                 }
                 let {
+                    id,
                     title,
                     vegetarian,
                     vegan,
@@ -142,6 +138,7 @@
                 } = response.data;
 
                 let _recipe = {
+                    id,
                     title,
                     vegetarian,
                     vegan,
