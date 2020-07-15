@@ -8,10 +8,10 @@
             <div class="numOptions">
                 <b-form-select v-model="num" :options="numOptions" size="md" class="mt-5"></b-form-select>
             </div>
-            <SearchFiltering v-on:childToParent="onFilter"></SearchFiltering>
+            <SearchFiltering class="SearchFiltering" v-on:childToParent="onFilter"></SearchFiltering>
         </div>
         <br>
-        <SearchResult title="Search Results" style="font-weight: bold" :recipes="recipes"/>
+        <SearchResult class="SearchResult" title="" style="font-weight: bold" :recipes="recipes"/>
     </div>
 
 </template>
@@ -168,19 +168,17 @@
 <style lang="scss" scoped>
     .container {
         align-items: center;
-        left-margin: 30%;
         background: blanchedalmond;
         opacity: 80%;
         width: 50%;
         alignment: center;
         padding-top: 3%;
-        padding-bottom: 3%;
+        padding-bottom: 2%;
         margin-top: 2%;
     }
-    .numOptions {
+    .numOptions, .SearchFiltering {
         align-items: center;
         width: 400px;
-        left-margin: 30%;
     }
 
 </style>

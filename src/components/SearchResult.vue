@@ -1,20 +1,25 @@
 <template>
     <div>
-        <multiselect v-show="recipes.length > 0" v-on:close="selectedSort" v-model="filters" :options="filterOptions" :multiple="false" :close-on-select="true" :searchable="false" :clear-on-select="false" :preserve-search="true" placeholder="Sort by:" label="name" track-by="name" >
+        <h1> Search Results</h1>
+        <multiselect class="multiselect" v-show="recipes.length > 0" v-on:close="selectedSort" v-model="filters"
+                     :options="filterOptions" :multiple="false" :close-on-select="true" :searchable="false"
+                     :clear-on-select="false" :preserve-search="true" placeholder="Sort by:" label="name"
+                     track-by="name">
         </multiselect>
-        <RecipePreviewResults title="Search Results" :recipes="results"/>
+        <RecipePreviewResults title="" :recipes="results"/>
     </div>
 </template>
 
 <script>
     import Multiselect from 'vue-multiselect';
     import RecipePreviewResults from "./RecipePreviewResults";
+
     export default {
-        data(){
-            return{
-                filterOptions:[{ name:'Preparation Time'},{ name:'Popularity'}],
-                filters:  [],
-                sortByPop:[],
+        data() {
+            return {
+                filterOptions: [{name: 'Preparation Time'}, {name: 'Popularity'}],
+                filters: [],
+                sortByPop: [],
                 sortByPrep: [],
                 unsorted: [],
                 results: []
@@ -25,25 +30,24 @@
             this.filters = [];
         },
         watch: {
-            recipes(){
+            recipes() {
                 this.results = [];
                 this.results.push(...this.recipes);
                 this.unsorted = [];
                 this.unsorted.push(...this.recipes);
-                if(this.$session.exists('sortOption')){
+                if (this.$session.exists('sortOption')) {
                     this.filters = this.$session.get('sortOption');
-                }
-                else{
+                } else {
                     this.filters = [];
                 }
             },
         },
-        components:{
+        components: {
             Multiselect,
             RecipePreviewResults
         },
         name: "SearchResult",
-        props:{
+        props: {
             title: {
                 type: String,
                 required: true
@@ -53,8 +57,8 @@
                 required: true
             },
         },
-        methods:{
-            selectedSort(){
+        methods: {
+            selectedSort() {
                 //this.sortBy();
                 if (this.filters) {
                     if (this.filters.name === 'Popularity') {
@@ -74,14 +78,14 @@
                 }
             },
 
-            updateSort(){
-                if(this.$session.exists('resultFiltered')){
+            updateSort() {
+                if (this.$session.exists('resultFiltered')) {
                     console.log("resultFiltered")
                     const recipes = this.$session.get('resultFiltered');
                     this.results.push(...recipes);
                 }
 
-                if(this.$session.exists('sortOption')){
+                if (this.$session.exists('sortOption')) {
                     console.log("sortOption")
                     this.filters = this.$session.get('sortOption');
 
@@ -93,8 +97,17 @@
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
-    .multiselect{
+    .multiselect {
         align-items: center;
-        width: 400px;
+        width: 30%;
+        alignment: center;
+        margin-left: 4%;
+        margin-bottom: 2%;
+
+
     }
+    h1{
+        margin-left: 4%;
+    }
+
 </style>
