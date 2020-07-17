@@ -1,5 +1,5 @@
 <template>
-    <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+    <b-card id="bcard" no-body class="overflow-hidden" style="max-width: 540px;">
         <b-row no-gutters>
             <b-col md="1" class="RecipePreviewUserInfo">
                 <RecipePreviewUserInfo :recipe="recipe" />
@@ -142,6 +142,11 @@
     .RecipePreviewUserInfo{
         padding-right: 2%;
         margin-top: 3%;
+    }
+    #bcard{
+        background-image: url("../assets/recipe3.jpg");
+        background-color: rgba(255,255,255,0.8);
+        background-blend-mode: lighten;
     }
 
 </style>
