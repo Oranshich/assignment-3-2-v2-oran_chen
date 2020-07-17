@@ -8,10 +8,10 @@
             <div class="numOptions">
                 <b-form-select v-model="num" :options="numOptions" size="md" class="mt-5"></b-form-select>
             </div>
-            <SearchFiltering v-on:childToParent="onFilter"></SearchFiltering>
+            <SearchFiltering class="SearchFiltering" v-on:childToParent="onFilter"></SearchFiltering>
         </div>
         <br>
-        <SearchResult title="Search Results" style="font-weight: bold" :recipes="recipes"/>
+        <SearchResult class="SearchResult" title="" style="font-weight: bold" :recipes="recipes"/>
     </div>
 
 </template>
@@ -70,41 +70,45 @@
                 if (this.$session.exists('sortOption')) {
                     this.$session.remove('sortOption');
                 }
+
                 let filerText = this.getFilters();
                 this.searchClicked = true;
                 try {
-                    const response = await this.axios.get(
-                        //"http://assignment3-oranchen.herokuapp.com/search/query/:searchQuery/amount/:num",
-                        "http://assignment3-oranchen.herokuapp.com/recipes/search/query/" + this.search_text + "/amount/" + this.num + "?" + filerText
-                        //"http://localhost:3000/recipes/search/query/"+ this.search_text + "/amount/" + this.num + "?" + filerText
-                    );
+                    if(this.search_text.length > 0) {
+                        const response = await this.axios.get(
+                            //"http://assignment3-oranchen.herokuapp.com/search/query/:searchQuery/amount/:num",
+                            "http://assignment3-oranchen.herokuapp.com/recipes/search/query/" + this.search_text + "/amount/" + this.num + "?" + filerText
+                            //"http://localhost:3000/recipes/search/query/"+ this.search_text + "/amount/" + this.num + "?" + filerText
+                        );
 
-                    const recipes = response.data;
-                    if (recipes.length === 0) {
-                        this.$root.toast("Search Results", "Didnt find any results for your search", "warning");
+                        const recipes = response.data;
+                        if (recipes.length === 0) {
+                            this.$root.toast("Search Results", "Didnt find any results for your search", "warning");
+                        }
+                        this.recipes = [];
+                        this.recipes.push(...recipes);
+
+                        if (this.$root.store.username) {
+                            this.$session.set('searchResult', recipes);
+                            this.$session.set('searchText', this.search_text);
+                            this.$session.set('searchNum', this.num);
+
+                            if (this.filterCuisine) {
+                                this.$session.set('cuisine', this.filterCuisine);
+                            }
+
+                            if (this.filterCuisine) {
+                                this.$session.set('intolerance', this.filterIntolerance);
+
+                            }
+                            if (this.filterDiet) {
+                                this.$session.set('diet', this.filterDiet);
+
+                            }
+                        }
+                    }else{
+                        this.$root.toast("Search Results", "Please enter a text before you search", "danger");
                     }
-                    this.recipes = [];
-                    this.recipes.push(...recipes);
-
-                    if(this.$root.store.username) {
-                        this.$session.set('searchResult', recipes);
-                        this.$session.set('searchText', this.search_text);
-                        this.$session.set('searchNum', this.num);
-
-                        if (this.filterCuisine) {
-                            this.$session.set('cuisine', this.filterCuisine);
-                        }
-
-                        if (this.filterCuisine) {
-                            this.$session.set('intolerance', this.filterIntolerance);
-
-                        }
-                        if (this.filterDiet) {
-                            this.$session.set('diet', this.filterDiet);
-
-                        }
-                    }
-
                     // console.log(this.recipes);
                 } catch (error) {
                     console.log(error);
@@ -116,22 +120,57 @@
             getFilters() {
                 debugger
                 let filterText = "";
+                if(this.filterCuisine.length > 0){
+                    filterText = filterText + "cuisine=";
+                }
+
                 for (let i = 0; i < this.filterCuisine.length; i++) {
-                    filterText = filterText + "cuisine=" + this.filterCuisine[i].name + "&";
+                    filterText = filterText + this.filterCuisine[i].name + ",";
+                }
+
+                if(this.filterCuisine.length > 0){
+                    filterText = filterText.substring(0, filterText.length - 1);
+                    filterText = filterText + "&";
+                }
+                if(this.filterDiet.length > 0){
+                    filterText = filterText + "diet=";
                 }
 
                 for (let i = 0; i < this.filterDiet.length; i++) {
-                    filterText = filterText + "diet=" + this.filterDiet[i].name + "&";
+                    filterText = filterText + this.filterDiet[i].name + ",";
+                }
+
+                if(this.filterDiet.length > 0){
+                    filterText = filterText.substring(0, filterText.length - 1);
+                    filterText = filterText + "&";
+                }
+                if(this.filterIntolerance.length > 0){
+                    filterText = filterText + "intolerances=";
                 }
 
                 for (let i = 0; i < this.filterIntolerance.length; i++) {
-                    filterText = filterText + "intolerance=" + this.filterIntolerance[i].name + "&";
+                    filterText = filterText + this.filterIntolerance[i].name + ",";
                 }
 
-                if (filterText.length > 0) {
+                // for (let i = 0; i < this.filterCuisine.length; i++) {
+                //     filterText = filterText + "cuisine=" + this.filterCuisine[i].name + "&";
+                // }
+                //
+                //
+                // for (let i = 0; i < this.filterDiet.length; i++) {
+                //     filterText = filterText + "diet=" + this.filterDiet[i].name + "&";
+                // }
+                //
+                // for (let i = 0; i < this.filterIntolerance.length; i++) {
+                //     filterText = filterText + "intolerance=" + this.filterIntolerance[i].name + "&";
+                // }
+
+                if(filterText.length > 0){
                     return filterText.substring(0, filterText.length - 1);
                 }
+
                 return filterText;
+
             },
 
             onFilter(value) {
@@ -168,19 +207,17 @@
 <style lang="scss" scoped>
     .container {
         align-items: center;
-        left-margin: 30%;
         background: blanchedalmond;
         opacity: 80%;
         width: 50%;
         alignment: center;
         padding-top: 3%;
-        padding-bottom: 3%;
+        padding-bottom: 2%;
         margin-top: 2%;
     }
-    .numOptions {
+    .numOptions, .SearchFiltering {
         align-items: center;
         width: 400px;
-        left-margin: 30%;
     }
 
 </style>
