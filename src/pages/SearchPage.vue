@@ -165,8 +165,11 @@
                 //     filterText = filterText + "intolerance=" + this.filterIntolerance[i].name + "&";
                 // }
 
+                if(filterText.length > 0){
+                    return filterText.substring(0, filterText.length - 1);
+                }
 
-                return filterText.substring(0, filterText.length - 1);
+                return filterText;
 
             },
 
