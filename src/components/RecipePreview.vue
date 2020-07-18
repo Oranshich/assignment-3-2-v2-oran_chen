@@ -18,16 +18,16 @@
                     </b-card-img>
                 </router-link>
             </b-col>
-            <b-col md="8" class="b-card-text">
+            <b-col md="12" class="b-card-text">
                 <b-card-body class="b-card-text">
                     <b-card-text>
                         <b-row>
-                            <b-col md="6">
+                            <b-col md="5">
                                 <li id="vegan">Vegan: {{ recipe.vegan === true ? "Yes" : "No" }}</li>
                                 <li id="vege">Vegetarian: {{ recipe.vegetarian === true ? "Yes" : "No" }}</li>
                                 <li id="glu">Gluten free: {{ recipe.glutenFree === true ? "Yes" : "No" }}</li>
                             </b-col>
-                            <b-col md="6">
+                            <b-col md="7">
                                 <li id="time">
                                     <img src="../assets/clock.png" height="20" width="20">
                                     {{ recipe.readyInMinutes }} minutes</li>
@@ -73,7 +73,7 @@
 
     }
     .recipe-preview > .recipe-body {
-        width: 80%;
+        width: 100%;
         height: 200px;
         position: relative;
         font-family: Calibri;
@@ -82,7 +82,7 @@
     .recipe-preview .recipe-body {
         margin: auto;
         display: block;
-        width: 80%;
+        width: 100%;
         height: 100%;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -130,7 +130,7 @@
         box-flex: 1;
         -webkit-flex-grow: 1;
         flex-grow: 1;
-        width: 70px;
+        width: 100px;
         display: table-cell;
         text-align: center;
         font-family: Calibri;
@@ -138,8 +138,10 @@
 
     .b-card-text {
         font-family: Calibri;
-        font-size: 11pt;
-        margin-left: 11%;
+        font-size: 10pt;
+        margin-left: 2%;
+        width: 100%;
+        position: center;
     }
     .image{
         margin-left: 15%;

@@ -1,7 +1,7 @@
 <template>
     <div>
         <br>
-        <RecipePreviewResults title="My Family Recipes" style="font-weight: bold; font-family: Satisfy" :recipes="recipes"/>
+        <RecipePreviewResults title="My Family Recipes" style="font-weight: bold; alignment: center; font-family: Satisfy" :recipes="recipes"/>
     </div>
 </template>
 
