@@ -262,7 +262,7 @@
                 try {
                     debugger
                     const response = await this.axios.post(
-                        "http://assignment3-oranchen.herokuapp.com/register",
+                        this.$root.store.prefixURL + "/register",
                         //       "http://localhost:3000/register",
                         {
                             username: this.form.username,

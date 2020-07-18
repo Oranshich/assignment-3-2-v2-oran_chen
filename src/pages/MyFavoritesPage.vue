@@ -25,7 +25,7 @@
             async updateRecipes() {
                 try {
                     const response = await this.axios.get(
-                        "http://assignment3-oranchen.herokuapp.com/user/getFavorites",
+                        this.$root.store.prefixURL + "/user/getFavorites",
                         {withCredentials:true}
                     );
                     console.log(response);

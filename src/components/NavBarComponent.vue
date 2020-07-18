@@ -74,6 +74,10 @@
             </b-dropdown-item>
           </b-dropdown>
           <b-dropdown v-if="$root.store.username" variant="primary" id="dropdown-right" right :text=$root.store.username>
+            <template slot="button-content">
+              <b-avatar class="avatar-image" :src="$root.store.profilePic" >
+              </b-avatar>
+            </template>
             <b-dropdown-item @click="Logout" href="#">Logout</b-dropdown-item>
           </b-dropdown>
         </b-navbar-nav>
@@ -119,4 +123,8 @@
     font-family: Calibri;
 
   }
+.avatar-image{
+  cursor: pointer;
+}
+
 </style>

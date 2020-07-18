@@ -77,7 +77,7 @@
                     if(this.search_text.length > 0) {
                         const response = await this.axios.get(
                             //"http://assignment3-oranchen.herokuapp.com/search/query/:searchQuery/amount/:num",
-                            "http://assignment3-oranchen.herokuapp.com/recipes/search/query/" + this.search_text + "/amount/" + this.num + "?" + filerText
+                            this.$root.store.prefixURL + "/recipes/search/query/" + this.search_text + "/amount/" + this.num + "?" + filerText
                             //"http://localhost:3000/recipes/search/query/"+ this.search_text + "/amount/" + this.num + "?" + filerText
                         );
 

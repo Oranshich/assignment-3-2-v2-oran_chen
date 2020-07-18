@@ -18,7 +18,7 @@
         async created() {
             try {
                 const response = await this.axios.get(
-                    "http://assignment3-oranchen.herokuapp.com/user/getLastViewed",
+                    this.$root.store.prefixURL + "/user/getLastViewed",
                     {withCredentials: true}
                 );
                 console.log(response);

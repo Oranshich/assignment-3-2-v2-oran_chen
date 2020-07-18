@@ -49,7 +49,7 @@
                             this.isWatched = this.myRecipe.watched;
                         } else {
                             const responseWatchedSaved = await this.axios.get(
-                                "http://assignment3-oranchen.herokuapp.com/user/recipeInfo/[" +
+                                this.$root.store.prefixURL + "/user/recipeInfo/[" +
                                 this.myRecipe.id + "]",
                                 {withCredentials: true}
                             );
@@ -78,7 +78,7 @@
                 if (this.isFavorite === false) {
                     try {
                         let response = this.axios.post(
-                            "http://assignment3-oranchen.herokuapp.com/user/addRecipeToFavorites",
+                            this.$root.store.prefixURL + "/user/addRecipeToFavorites",
                             {
                                 recipe_id: this.recipe.id
                             },

@@ -17,6 +17,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // if the user logged in and than the cookie expired thus the local storage contains username but there is no cookie
+  console.log("cookie" + Vue.$cookies.get("session"));
   if (shared_data.username !== undefined && !Vue.$cookies.get("session")){
       // logout force
     shared_data.logout();
@@ -45,6 +46,7 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  AvatarPlugin
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -57,6 +59,7 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  AvatarPlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 //Vue.component(Multiselect);
@@ -90,17 +93,21 @@ Vue.config.productionTip = false;
 const shared_data = {
   username: localStorage.username,
   recipes_info: {},
-  login(username) {
+  profilePic: "",
+  login(username,imageUrl) {
     localStorage.setItem("username", username);
     this.username = username;
     console.log("login", this.username);
+    this.profilePic = imageUrl;
   },
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
     Vue.$cookies.remove("session");
     this.username = undefined;
+    this.profilePic = "";
   },
+  prefixURL: "http://localhost:3000"
 };
 console.log(shared_data);
 // Vue.prototype.$root.store = shared_data;

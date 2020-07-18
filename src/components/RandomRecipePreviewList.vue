@@ -25,7 +25,7 @@
             async getRandomRecipes(){
                 try {
                     const response = await this.axios.get(
-                        "http://assignment3-oranchen.herokuapp.com/recipes/getRandomRecipes"
+                        this.$root.store.prefixURL + "/recipes/getRandomRecipes"
                     );
                     console.log(response);
                     const recipes = response.data;

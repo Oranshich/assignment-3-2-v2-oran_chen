@@ -93,14 +93,14 @@
                 try {
                     if (this.$route.params.recipeId.toString().length <= 10) {
                         response = await this.axios.get(
-                            "http://assignment3-oranchen.herokuapp.com/recipes/recipeInformation",
+                            this.$root.store.prefixURL + "/recipes/recipeInformation",
                             {
                                 params: {recipe_id: this.$route.params.recipeId}
                             }
                         );
                         if (this.$root.store.username ) {
                             responseView = await this.axios.post(
-                                "http://assignment3-oranchen.herokuapp.com/user/viewRecipe",
+                                this.$root.store.prefixURL + "/user/viewRecipe",
                                 {
                                     recipe_id: response.data.id
                                 },
@@ -111,7 +111,7 @@
                         }
                     } else {
                         response = await this.axios.get(
-                            "http://assignment3-oranchen.herokuapp.com/user/getMyFullRecipes/" +
+                            this.$root.store.prefixURL + "/user/getMyFullRecipes/" +
                             this.$route.params.recipeId,
                             {withCredentials: true}
                         );
