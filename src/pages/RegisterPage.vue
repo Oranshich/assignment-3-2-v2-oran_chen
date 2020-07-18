@@ -2,7 +2,7 @@
     <div class="container">
         <b-row>
             <b-col>
-                <h2 class="title text-center">Register</h2>
+                <h1 class="title text-center">Register</h1>
             </b-col>
         </b-row>
         <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
@@ -315,5 +315,14 @@
         padding-top: 1%;
         padding-bottom: 2%;
         font-weight: bold;
+    }
+    @font-face {
+        font-family: Satisfy;
+        src: url(../assets/Satisfy-Regular.ttf);
+    }
+    h1{
+        font-family: Satisfy;
+        font-size: 40px;
+        color: black;
     }
 </style>

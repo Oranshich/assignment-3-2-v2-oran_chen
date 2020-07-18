@@ -1,7 +1,7 @@
 <template>
     <div>
         <RecipePreviewList class="RecipePreviewList" title="Check out these recipes" :recipes="recipes"/>
-        <b-button  style="width:60px;display: block;" class="mx-auto w-25" variant="primary" @click="getRandomRecipes">More</b-button>
+        <b-button  style="width:60px;display: block; margin-bottom: 2%; padding-top: 1.5%; padding-bottom: 1.5%; " class="mx-auto w-25" variant="primary" @click="getRandomRecipes">More Recipes</b-button>
     </div>
 </template>
 

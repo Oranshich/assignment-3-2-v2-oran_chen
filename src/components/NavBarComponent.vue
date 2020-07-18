@@ -73,8 +73,9 @@
               </router-link>
             </b-dropdown-item>
           </b-dropdown>
-          <b-dropdown v-if="$root.store.username" variant="primary" id="dropdown-right" right :text=$root.store.username>
+          <b-dropdown class="user-b-dropdown" v-if="$root.store.username" variant="primary" id="dropdown-right" right>
             <template slot="button-content">
+              <span>{{$root.store.username}}</span>
               <b-avatar class="avatar-image" :src="$root.store.profilePic" >
               </b-avatar>
             </template>
@@ -103,14 +104,6 @@
 
 <style scoped>
 
-/*  .nav {*/
-/*    padding: 30px;*/
-/*    margin-bottom: 30px;*/
-/*    margin-top: 30px;*/
-/*    padding: 30px;*/
-/*    font-family: Calibri;*/
-/*  }*/
-
   #b-navbar a {
     font-weight: bold;
     color: #2c3e50;
@@ -121,10 +114,14 @@
   #b-navbar a.router-link-exact-active {
     color: #42b983;
     font-family: Calibri;
-
   }
 .avatar-image{
   cursor: pointer;
 }
+  span{
+    margin-right: 10%;
+    font-weight: bold;
+    padding-right: 1%;
+  }
 
 </style>
