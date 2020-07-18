@@ -93,7 +93,7 @@ Vue.config.productionTip = false;
 const shared_data = {
   username: localStorage.username,
   recipes_info: {},
-  profilePic: "",
+  profilePic: localStorage.profilePic,
   login(username,imageUrl) {
     localStorage.setItem("username", username);
     this.username = username;
@@ -103,6 +103,7 @@ const shared_data = {
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    localStorage.removeItem("profilePic");
     Vue.$cookies.remove("session");
     this.username = undefined;
     this.profilePic = "";

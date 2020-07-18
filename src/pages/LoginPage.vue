@@ -113,10 +113,11 @@
                         );
                         console.log("user Details" + userDetails);
                         profilePic = userDetails.data.profilePicture;
+                        localStorage.setItem("profilePic", profilePic);
                     }
                     // console.log(response);
                     // this.$root.loggedIn = true;
-                    console.log("profilePic" + profilePic);
+
                     this.$root.store.login(this.form.username, profilePic);
                     this.$router.push("/").catch((err) => {});
                 } catch (err) {
