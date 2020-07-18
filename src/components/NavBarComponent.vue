@@ -119,7 +119,7 @@
   cursor: pointer;
 }
   span{
-    margin-right: 10%;
+    margin-right: 12%;
     font-weight: bold;
     padding-right: 1%;
   }
