@@ -1,7 +1,7 @@
 <template>
     <div>
         <br>
-        <RecipePreviewResults title="Favorite Recipes" :recipes="recipes"/>
+        <RecipePreviewResults title="Favorite Recipes" style="font-weight: bold; font-family: Satisfy" :recipes="recipes"/>
     </div>
 </template>
 
@@ -47,5 +47,8 @@
 </script>
 
 <style scoped>
-
+    @font-face {
+        font-family: Satisfy;
+        src: url(../assets/Satisfy-Regular.ttf);
+    }
 </style>

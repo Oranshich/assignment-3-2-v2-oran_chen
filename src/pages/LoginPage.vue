@@ -136,9 +136,18 @@ export default {
     opacity: 70%;
     width: 80%;
     alignment: center;
-    margin-top: 2%;
-    padding-top: 1%;
+    margin-top: 5%;
+    padding-top: 5%;
     padding-bottom: 2%;
     font-weight: bold;
+  }
+  @font-face {
+    font-family: Satisfy;
+    src: url(../assets/Satisfy-Regular.ttf);
+  }
+  h1{
+    font-family: Satisfy;
+    font-size: 40px;
+    color: black;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <RecipePreviewList title="Your last viewed recipes"  :recipes="this.recipes"/>
+    <RecipePreviewList class="RecipePreviewList" title="Your last viewed recipes"  :recipes="this.recipes"/>
 </template>
 
 <script>
@@ -44,5 +44,8 @@
         font-family: Calibri;
         font-weight: bold;
         size: 22px;
+    }
+    .RecipePreviewList{
+        margin-top: 1.5%;
     }
 </style>

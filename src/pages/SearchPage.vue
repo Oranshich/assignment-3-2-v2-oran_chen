@@ -11,7 +11,7 @@
             <SearchFiltering class="SearchFiltering" v-on:childToParent="onFilter"></SearchFiltering>
         </div>
         <br>
-        <SearchResult class="SearchResult" title="" style="font-weight: bold" :recipes="recipes"/>
+        <SearchResult class="SearchResult" title="" style="font-weight: bold; font-family: Satisfy" :recipes="recipes"/>
     </div>
 
 </template>
@@ -218,6 +218,15 @@
     .numOptions, .SearchFiltering {
         align-items: center;
         width: 400px;
+    }
+    @font-face {
+        font-family: Satisfy;
+        src: url(../assets/Satisfy-Regular.ttf);
+    }
+    h1{
+        font-family: Satisfy;
+        font-size: 40px;
+        color: black;
     }
 
 </style>

@@ -1,5 +1,11 @@
 <template>
-    <b-card id="bcard" no-body class="overflow-hidden" style="max-width: 540px;">
+    <b-card id="bcard" no-body class="overflow-hidden">
+        <b-row>
+            <b-col>
+                <h2>{{recipe.title}}
+                </h2>
+            </b-col>
+        </b-row>
         <b-row no-gutters>
             <b-col md="1" class="RecipePreviewUserInfo">
                 <RecipePreviewUserInfo :recipe="recipe" />
@@ -13,15 +19,25 @@
                 </router-link>
             </b-col>
             <b-col md="8" class="b-card-text">
-                <b-card-body :title="recipe.title" class="b-card-text">
+                <b-card-body class="b-card-text">
                     <b-card-text>
-                        <li>Ready in: {{ recipe.readyInMinutes }} minutes</li>
-                        <li v-if="recipe.aggregateLikes">{{ recipe.aggregateLikes }} likes this recipe</li>
-                        <li>Vegan: {{ recipe.vegan === true ? "Yes" : "No" }}</li>
-                        <li>Vegetarian: {{ recipe.vegetarian === true ? "Yes" : "No" }}</li>
-                        <li >Gluten free: {{ recipe.glutenFree === true ? "Yes" : "No" }}</li>
-                        <li v-if="recipe.preparedBy">Prepared by: {{recipe.preparedBy}}</li>
-                        <li v-if="recipe.preparedAt">Prepared at: {{recipe.preparedAt}}</li>
+                        <b-row>
+                            <b-col md="6">
+                                <li id="vegan">Vegan: {{ recipe.vegan === true ? "Yes" : "No" }}</li>
+                                <li id="vege">Vegetarian: {{ recipe.vegetarian === true ? "Yes" : "No" }}</li>
+                                <li id="glu">Gluten free: {{ recipe.glutenFree === true ? "Yes" : "No" }}</li>
+                            </b-col>
+                            <b-col md="6">
+                                <li id="time">
+                                    <img src="../assets/clock.png" height="20" width="20">
+                                    {{ recipe.readyInMinutes }} minutes</li>
+                                <li v-if="recipe.aggregateLikes" id="like">
+                                    <img src="../assets/like1.webp" height="25" width="25">
+                                    {{ recipe.aggregateLikes }} </li>
+                                <li id="prep1" v-if="recipe.preparedBy">By: {{recipe.preparedBy}}</li>
+                                <li id="prep2" v-if="recipe.preparedAt">At: {{recipe.preparedAt}}</li>
+                            </b-col>
+                        </b-row>
                     </b-card-text>
                 </b-card-body>
             </b-col>
@@ -90,7 +106,7 @@
     }
 
     .recipe-footer ul.recipe-overview {
-        padding: 5px 10px;
+        padding: 5px 5px;
         width: 100%;
         display: -webkit-box;
         display: -moz-box;
@@ -117,7 +133,7 @@
         box-flex: 1;
         -webkit-flex-grow: 1;
         flex-grow: 1;
-        width: 80px;
+        width: 70px;
         display: table-cell;
         text-align: center;
         font-family: Calibri;
@@ -125,14 +141,14 @@
 
     .b-card-text {
         font-family: Calibri;
-        font-size: 10pt;
+        font-size: 11pt;
+        margin-left: 11%;
     }
     .recipe-image:hover{
         cursor: pointer;
 
     }
     .image{
-        margin-top: 3%;
         margin-left: 15%;
         padding: 1% 0 0 0;
         height: 80%;
@@ -147,6 +163,36 @@
         background-image: url("../assets/recipe3.jpg");
         background-color: rgba(255,255,255,0.8);
         background-blend-mode: lighten;
+        margin-bottom: 1%;
+    }
+    @font-face {
+        font-family: Satisfy;
+        src: url(../assets/Satisfy-Regular.ttf);
+    }
+    h2{
+        font-family: Satisfy;
+        font-size: 24px;
+        color: black;
+        padding-top: 1%;
+        margin-left: 3%;
+    }
+    #like, #vege, #glu, #vegan, #time, #prep1, #prep2{
+        font-weight: bold;
+    }
+    #vege{
+        color: green;
+    }
+    #vegan{
+        color: #42b983;
+    }
+    #glu{
+        color: darkgoldenrod;
+    }
+    #like{
+        color: blue;
+    }
+    #time{
+        color: crimson;
     }
 
 </style>

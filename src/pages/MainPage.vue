@@ -3,12 +3,12 @@
     <b-row>
       <b-col>
         <br>
-        <h1 class="title text-center" style="font-size: 50px; font-weight: bold">Oran&Chen's Recipes</h1>
+        <h1 class="title text-center">Oran&Chen's Recipes</h1>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <RandomRecipePreviewList title="Explore these recipes" class="RandomRecipes center" />
+        <RandomRecipePreviewList title="" class="RandomRecipes center" />
       </b-col>
       <b-col v-if="$root.store.username">
         <LastViewedRecipePreviewList
@@ -16,16 +16,10 @@
                 :class="{center: true}"></LastViewedRecipePreviewList>
       </b-col>
       <b-col v-else>
-        <br>
         <login-page title="login" class="login center" />
       </b-col>
     </b-row>
 
-    <!-- <div
-      style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
-    >
-      Centeredasdasdad
-    </div>-->
   </b-container>
 </template>
 
@@ -62,4 +56,17 @@ export default {
   pointer-events: none;
   cursor: default;
 }
+  @font-face {
+    font-family: Galada;
+    src: url(../assets/Galada-Regular.ttf);
+  }
+  h1{
+    font-family: Galada;
+    font-size: 50px;
+    color: crimson;
+  }
+  .login-page{
+    padding-top: 2%;
+  }
+
 </style>
