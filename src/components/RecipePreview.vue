@@ -72,7 +72,6 @@
         font-family: Calibri;
 
     }
-
     .recipe-preview > .recipe-body {
         width: 80%;
         height: 200px;
@@ -90,8 +89,6 @@
         background-size: cover;
         font-family: Calibri;
     }
-
-
     .recipe-footer .recipe-title {
         padding: 10px 10px;
         width: 100%;
@@ -144,16 +141,15 @@
         font-size: 11pt;
         margin-left: 11%;
     }
-    .recipe-image:hover{
-        cursor: pointer;
-
-    }
     .image{
         margin-left: 15%;
         padding: 1% 0 0 0;
         height: 80%;
         width: 80%;
         alignment: center;
+    }
+    .image:hover{
+        cursor: pointer;
     }
     .RecipePreviewUserInfo{
         padding-right: 2%;

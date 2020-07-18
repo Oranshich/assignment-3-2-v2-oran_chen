@@ -45,7 +45,5 @@
         font-weight: bold;
         size: 22px;
     }
-    .RecipePreviewList{
-        margin-top: 1.5%;
-    }
+
 </style>

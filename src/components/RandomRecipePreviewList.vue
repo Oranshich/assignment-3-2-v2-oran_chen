@@ -47,7 +47,5 @@
 </script>
 
 <style scoped>
-    .RecipePreviewList{
-        margin-top: 3%;
-    }
+
 </style>

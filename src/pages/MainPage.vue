@@ -45,9 +45,9 @@ export default {
     font-family: Calibri;
     font-size: 34px;
   }
-.RandomRecipes {
-  margin: 10px 0 10px;
-}
+/*.RandomRecipes {*/
+/*  margin: 10px 0 10px;*/
+/*}*/
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
   filter: blur(2px);
@@ -63,7 +63,9 @@ export default {
   h1{
     font-family: Galada;
     font-size: 50px;
-    color: crimson;
+    color: blue;
+    font-weight: bold;
+    text-emphasis-color: #000;
   }
   .login-page{
     padding-top: 2%;
