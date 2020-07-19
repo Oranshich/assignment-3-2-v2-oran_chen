@@ -3,7 +3,8 @@
         <div v-if="recipe">
             <div class="recipe-header mt-3 mb-4">
                 <div class="text">{{ recipe.title }}</div>
-                <img :src="recipe.image" class="center"/>
+                <img v-if="recipe.image" :src="recipe.image" class="center"/>
+                <img v-else src="../assets/recipe_icon.png" alt="Image" class="img" height="230" width="150">
                 <br>
                 <RecipePreviewUserInfo v-if="recipe.aggregateLikes" class="RecipePreviewUserInfo" :recipe="recipe" align="center"/>
             </div>
@@ -188,7 +189,12 @@
         padding-bottom: 3%;
 
     }
-
+    .img{
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 8%;
+    }
     .center {
         display: block;
         margin-left: auto;

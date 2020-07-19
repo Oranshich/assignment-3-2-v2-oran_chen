@@ -14,8 +14,9 @@
                 <router-link
                         :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
                         class="recipe-preview" exact >
-                    <b-card-img :src="recipe.image" alt="Image" class="recipe-image">
+                    <b-card-img v-if="recipe.image" :src="recipe.image" alt="Image" class="recipe-image">
                     </b-card-img>
+                    <img v-else src="../assets/recipe_icon.png" alt="Image" class="recipe-image" height="150" width="150">
                 </router-link>
             </b-col>
             <b-col md="12" class="b-card-text">

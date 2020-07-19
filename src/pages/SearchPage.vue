@@ -89,6 +89,7 @@
                         this.recipes.push(...recipes);
 
                         if (this.$root.store.username) {
+                            this.$session.clear();
                             this.$session.set('searchResult', recipes);
                             this.$session.set('searchText', this.search_text);
                             this.$session.set('searchNum', this.num);
