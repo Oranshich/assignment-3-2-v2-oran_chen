@@ -62,9 +62,6 @@
     >
       Login failed: {{ form.submitError }}
     </b-alert>
-    <!-- <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card> -->
   </div>
 </template>
 
@@ -115,8 +112,6 @@
                         profilePic = userDetails.data.profilePicture;
                         localStorage.setItem("profilePic", profilePic);
                     }
-                    // console.log(response);
-                    // this.$root.loggedIn = true;
 
                     this.$root.store.login(this.form.username, profilePic);
                     this.$router.push("/").catch((err) => {});
@@ -126,14 +121,11 @@
                 }
             },
             onLogin() {
-                // console.log("login method called");
                 this.form.submitError = undefined;
                 this.$v.form.$touch();
                 if (this.$v.form.$anyError) {
                     return;
                 }
-                // console.log("login method go");
-
                 this.Login();
             }
         }

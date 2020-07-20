@@ -59,7 +59,6 @@
         },
         methods: {
             selectedSort() {
-                //this.sortBy();
                 if (this.filters) {
                     if (this.filters.name === 'Popularity') {
                         this.results.sort((a, b) => b.aggregateLikes - a.aggregateLikes);
