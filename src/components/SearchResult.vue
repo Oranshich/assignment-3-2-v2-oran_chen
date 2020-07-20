@@ -79,13 +79,11 @@
 
             updateSort() {
                 if (this.$session.exists('resultFiltered')) {
-                    console.log("resultFiltered")
                     const recipes = this.$session.get('resultFiltered');
                     this.results.push(...recipes);
                 }
 
                 if (this.$session.exists('sortOption')) {
-                    console.log("sortOption")
                     this.filters = this.$session.get('sortOption');
 
                 }

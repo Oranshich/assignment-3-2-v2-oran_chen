@@ -91,7 +91,6 @@
                 await this.getUserInformation();
             },
             myRecipe: async function(){
-                console.log("recipe changed!!!");
                 await this.getUserInformation();
             },
         }

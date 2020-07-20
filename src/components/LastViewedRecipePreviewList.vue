@@ -21,7 +21,6 @@
                     this.$root.store.prefixURL + "/user/getLastViewed",
                     {withCredentials: true}
                 );
-                console.log(response);
                 const recipes = response.data;
                 this.recipes = [];
                 this.recipes.push(...recipes);
@@ -29,7 +28,6 @@
                     this.recipes[i].watched = "";
                     this.recipes[i].saved = "";
                 }
-                console.log(this.recipes);
             } catch (error) {
                 console.log(error);
             }

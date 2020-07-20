@@ -54,14 +54,12 @@
         },
 
         created() {
-            console.log("created filtering");
            this.updateFilters();
         },
         methods:{
             clearAll () {
             },
             addSelect(type){
-                console.log("the chosen cuisine:" + this.cuisine);
                 if(type === 'cuisine'){
                     this.$emit('childToParent', {name: 'cuisine', value: this.cuisine});
                 }
@@ -74,7 +72,6 @@
             },
             updateFilters(){
                 if(this.$session.exists('cuisine')){
-                    console.log("cuisine exist");
                     this.cuisine = this.$session.get('cuisine');
                     this.addSelect('cuisine');
                 }
