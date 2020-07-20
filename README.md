@@ -23,11 +23,11 @@ We've created in advance two users, whom we've inserted to the database:
 Each of these users own 3 personal recipes and 3 family recipes.
 
 
-* Changes performed in the backend part after submission (commited after Jun 8, 2020):
--Fixed cors according to Eran's instructions
--Changed cookie parameters  according to Eran's instructions
--Removed unneccesary validation for the register form in validator.js (since they are being done in the front)
--Added id parameter to the returned object in family recipes
--Added extended ingridients to family recipes
--Chneged SQL query to getRecipesByUser to full family recipes and personal recipes
+## Changes performed in the backend part after submission (commited after Jun 8, 2020):
+- Fixed cors according to Eran's instructions
+- Changed cookie parameters  according to Eran's instructions
+- Removed unneccesary validation for the register form in validator.js (since they are being done in the front)
+- Added id parameter to the returned object in family recipes
+- Added extended ingridients to family recipes
+- Chneged SQL query to getRecipesByUser to full family recipes and personal recipes
 
