@@ -108,7 +108,6 @@
                             this.$root.store.prefixURL + "/user/getProfile",
                             {withCredentials: true}
                         );
-                        console.log("user Details" + userDetails);
                         profilePic = userDetails.data.profilePicture;
                         localStorage.setItem("profilePic", profilePic);
                     }

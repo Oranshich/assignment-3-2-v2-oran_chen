@@ -109,7 +109,6 @@ const shared_data = {
   },
   prefixURL: "http://localhost:3000"
 };
-console.log(shared_data);
 // Vue.prototype.$root.store = shared_data;
 
 new Vue({
