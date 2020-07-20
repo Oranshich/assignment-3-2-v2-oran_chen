@@ -11,7 +11,7 @@
             <SearchFiltering class="SearchFiltering" v-on:childToParent="onFilter"></SearchFiltering>
         </div>
         <br>
-        <SearchResult class="SearchResult" title="" style="font-weight: bold" :recipes="recipes"/>
+        <SearchResult class="SearchResult" title="" style="font-weight: bold; font-family: Satisfy" :recipes="recipes"/>
     </div>
 
 </template>
@@ -77,7 +77,7 @@
                     if(this.search_text.length > 0) {
                         const response = await this.axios.get(
                             //"http://assignment3-oranchen.herokuapp.com/search/query/:searchQuery/amount/:num",
-                            "http://assignment3-oranchen.herokuapp.com/recipes/search/query/" + this.search_text + "/amount/" + this.num + "?" + filerText
+                            this.$root.store.prefixURL + "/recipes/search/query/" + this.search_text + "/amount/" + this.num + "?" + filerText
                             //"http://localhost:3000/recipes/search/query/"+ this.search_text + "/amount/" + this.num + "?" + filerText
                         );
 
@@ -89,6 +89,7 @@
                         this.recipes.push(...recipes);
 
                         if (this.$root.store.username) {
+                            this.$session.clear();
                             this.$session.set('searchResult', recipes);
                             this.$session.set('searchText', this.search_text);
                             this.$session.set('searchNum', this.num);
@@ -218,6 +219,15 @@
     .numOptions, .SearchFiltering {
         align-items: center;
         width: 400px;
+    }
+    @font-face {
+        font-family: Satisfy;
+        src: url(../assets/Satisfy-Regular.ttf);
+    }
+    h1{
+        font-family: Satisfy;
+        font-size: 40px;
+        color: black;
     }
 
 </style>

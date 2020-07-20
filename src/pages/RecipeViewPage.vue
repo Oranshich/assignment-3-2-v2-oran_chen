@@ -3,7 +3,8 @@
         <div v-if="recipe">
             <div class="recipe-header mt-3 mb-4">
                 <div class="text">{{ recipe.title }}</div>
-                <img :src="recipe.image" class="center"/>
+                <img v-if="recipe.image" :src="recipe.image" class="center"/>
+                <img v-else src="../assets/recipe_icon.png" alt="Image" class="img" height="230" width="150">
                 <br>
                 <RecipePreviewUserInfo v-if="recipe.aggregateLikes" class="RecipePreviewUserInfo" :recipe="recipe" align="center"/>
             </div>
@@ -14,6 +15,18 @@
                             <li v-if="recipe.aggregateLikes" class="titleContainer">
                                 <div>
                                     <span  class="text_recipe">{{recipe.aggregateLikes}} like this recipe</span>
+                                </div>
+                            </li>
+                            <li v-if="recipe.preparedAt !== null && recipe.preparedAt !== undefined" class="titleContainer">
+                                <div>
+                                    <span class="title_recipe">At:</span>
+                                    <span  class="text_recipe"> {{recipe.preparedAt}} </span>
+                                </div>
+                            </li>
+                            <li v-if="recipe.preparedBy !== null && recipe.preparedBy !== undefined" class="titleContainer">
+                                <div>
+                                    <span class="title_recipe">By:</span>
+                                    <span  class="text_recipe"> {{recipe.preparedBy}} </span>
                                 </div>
                             </li>
                             <li class="titleContainer">
@@ -93,14 +106,14 @@
                 try {
                     if (this.$route.params.recipeId.toString().length <= 10) {
                         response = await this.axios.get(
-                            "http://assignment3-oranchen.herokuapp.com/recipes/recipeInformation",
+                            this.$root.store.prefixURL + "/recipes/recipeInformation",
                             {
                                 params: {recipe_id: this.$route.params.recipeId}
                             }
                         );
                         if (this.$root.store.username ) {
                             responseView = await this.axios.post(
-                                "http://assignment3-oranchen.herokuapp.com/user/viewRecipe",
+                                this.$root.store.prefixURL + "/user/viewRecipe",
                                 {
                                     recipe_id: response.data.id
                                 },
@@ -111,7 +124,7 @@
                         }
                     } else {
                         response = await this.axios.get(
-                            "http://assignment3-oranchen.herokuapp.com/user/getMyFullRecipes/" +
+                            this.$root.store.prefixURL + "/user/getMyFullRecipes/" +
                             this.$route.params.recipeId,
                             {withCredentials: true}
                         );
@@ -134,7 +147,9 @@
                     extendedIngredients,
                     aggregateLikes,
                     readyInMinutes,
-                    image
+                    image,
+                    preparedBy,
+                    preparedAt
                 } = response.data;
 
                 let _recipe = {
@@ -148,7 +163,9 @@
                     extendedIngredients,
                     aggregateLikes,
                     readyInMinutes,
-                    image
+                    image,
+                    preparedBy,
+                    preparedAt
                 };
 
                 this.recipe = _recipe;
@@ -188,7 +205,12 @@
         padding-bottom: 3%;
 
     }
-
+    .img{
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 8%;
+    }
     .center {
         display: block;
         margin-left: auto;

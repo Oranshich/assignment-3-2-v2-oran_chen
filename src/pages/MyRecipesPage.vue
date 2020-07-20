@@ -1,7 +1,7 @@
 <template>
     <div>
         <br>
-        <RecipePreviewResults title="My Recipes" :recipes="recipes"/>
+        <RecipePreviewResults title="My Recipes" style="font-weight: bold; font-family: Satisfy" :recipes="recipes"/>
     </div>
 </template>
 
@@ -21,7 +21,7 @@
         async created() {
             try {
                 const response = await this.axios.get(
-                    "http://assignment3-oranchen.herokuapp.com/user/getMyRecipes",
+                    this.$root.store.prefixURL + "/user/getMyRecipes",
                     {withCredentials: true}
                 );
                 console.log(response);
@@ -44,6 +44,8 @@
 </script>
 
 <style scoped>
-
-
+    @font-face {
+        font-family: Satisfy;
+        src: url(../assets/Satisfy-Regular.ttf);
+    }
 </style>

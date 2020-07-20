@@ -8,16 +8,16 @@
     </b-row>
     <b-form @submit.prevent="onLogin">
       <b-form-group
-        id="input-group-Username"
-        label-cols-sm="3"
-        label="Username:"
-        label-for="Username"
+          id="input-group-Username"
+          label-cols-sm="3"
+          label="Username:"
+          label-for="Username"
       >
         <b-form-input
-          id="Username"
-          v-model="$v.form.username.$model"
-          type="text"
-          :state="validateState('username')"
+            id="Username"
+            v-model="$v.form.username.$model"
+            type="text"
+            :state="validateState('username')"
         ></b-form-input>
         <b-form-invalid-feedback>
           Username is required
@@ -25,16 +25,16 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-Password"
-        label-cols-sm="3"
-        label="Password:"
-        label-for="Password"
+          id="input-group-Password"
+          label-cols-sm="3"
+          label="Password:"
+          label-for="Password"
       >
         <b-form-input
-          id="Password"
-          type="password"
-          v-model="$v.form.password.$model"
-          :state="validateState('password')"
+            id="Password"
+            type="password"
+            v-model="$v.form.password.$model"
+            :state="validateState('password')"
         ></b-form-input>
         <b-form-invalid-feedback>
           Password is required
@@ -42,11 +42,11 @@
       </b-form-group>
 
       <b-button
-        type="submit"
-        variant="primary"
-        style="width:100px;display:block;"
-        class="mx-auto w-100"
-        >Login</b-button
+          type="submit"
+          variant="primary"
+          style="width:100px;display:block;"
+          class="mx-auto w-100"
+      >Login</b-button
       >
       <div class="mt-2">
         Do not have an account yet?
@@ -54,11 +54,11 @@
       </div>
     </b-form>
     <b-alert
-      class="mt-2"
-      v-if="form.submitError"
-      variant="warning"
-      dismissible
-      show
+        class="mt-2"
+        v-if="form.submitError"
+        variant="warning"
+        dismissible
+        show
     >
       Login failed: {{ form.submitError }}
     </b-alert>
@@ -69,65 +69,75 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
-export default {
-  name: "Login",
-  data() {
-    return {
-      form: {
-        username: "",
-        password: "",
-        submitError: undefined
-      }
-    };
-  },
-  validations: {
-    form: {
-      username: {
-        required
-      },
-      password: {
-        required
-      }
-    }
-  },
-  methods: {
-    validateState(param) {
-      const { $dirty, $error } = this.$v.form[param];
-      return $dirty ? !$error : null;
-    },
-    async Login() {
-      try {
-        const response = await this.axios.post(
-          "http://assignment3-oranchen.herokuapp.com/login",
-          {
-            username: this.form.username,
-            password: this.form.password
-          }
-        );
-        // console.log(response);
-        // this.$root.loggedIn = true;
-        console.log(this.$root.store.login);
-        this.$root.store.login(this.form.username);
-        this.$router.push("/").catch((err) => {});
-      } catch (err) {
-        console.log(err.response);
-        this.form.submitError = err.response.data.error.message;
-      }
-    },
-    onLogin() {
-      // console.log("login method called");
-      this.form.submitError = undefined;
-      this.$v.form.$touch();
-      if (this.$v.form.$anyError) {
-        return;
-      }
-      // console.log("login method go");
+    import { required } from "vuelidate/lib/validators";
+    export default {
+        name: "Login",
+        data() {
+            return {
+                form: {
+                    username: "",
+                    password: "",
+                    submitError: undefined
+                }
+            };
+        },
+        validations: {
+            form: {
+                username: {
+                    required
+                },
+                password: {
+                    required
+                }
+            }
+        },
+        methods: {
+            validateState(param) {
+                const { $dirty, $error } = this.$v.form[param];
+                return $dirty ? !$error : null;
+            },
+            async Login() {
+                try {
+                    let profilePic = "";
+                    const response = await this.axios.post(
+                        this.$root.store.prefixURL + "/login",
+                        {
+                            username: this.form.username,
+                            password: this.form.password
+                        }
+                    );
+                    if(response){
+                        const userDetails = await this.axios.get(
+                            this.$root.store.prefixURL + "/user/getProfile",
+                            {withCredentials: true}
+                        );
+                        console.log("user Details" + userDetails);
+                        profilePic = userDetails.data.profilePicture;
+                        localStorage.setItem("profilePic", profilePic);
+                    }
+                    // console.log(response);
+                    // this.$root.loggedIn = true;
 
-      this.Login();
-    }
-  }
-};
+                    this.$root.store.login(this.form.username, profilePic);
+                    this.$router.push("/").catch((err) => {});
+                } catch (err) {
+                    console.log(err.response);
+                    this.form.submitError = err.response.data.error.message;
+                }
+            },
+            onLogin() {
+                // console.log("login method called");
+                this.form.submitError = undefined;
+                this.$v.form.$touch();
+                if (this.$v.form.$anyError) {
+                    return;
+                }
+                // console.log("login method go");
+
+                this.Login();
+            }
+        }
+    };
 </script>
 <style lang="scss" scoped>
   .container {
@@ -136,9 +146,18 @@ export default {
     opacity: 70%;
     width: 80%;
     alignment: center;
-    margin-top: 2%;
-    padding-top: 1%;
+    margin-top: 5%;
+    padding-top: 5%;
     padding-bottom: 2%;
     font-weight: bold;
+  }
+  @font-face {
+    font-family: Satisfy;
+    src: url(../assets/Satisfy-Regular.ttf);
+  }
+  h1{
+    font-family: Satisfy;
+    font-size: 40px;
+    color: black;
   }
 </style>

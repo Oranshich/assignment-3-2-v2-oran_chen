@@ -1,5 +1,5 @@
 <template>
-    <RecipePreviewList title="Your last viewed recipes"  :recipes="this.recipes"/>
+    <RecipePreviewList class="RecipePreviewList" title="Your last viewed recipes"  :recipes="this.recipes"/>
 </template>
 
 <script>
@@ -18,7 +18,7 @@
         async created() {
             try {
                 const response = await this.axios.get(
-                    "http://assignment3-oranchen.herokuapp.com/user/getLastViewed",
+                    this.$root.store.prefixURL + "/user/getLastViewed",
                     {withCredentials: true}
                 );
                 console.log(response);
@@ -45,4 +45,5 @@
         font-weight: bold;
         size: 22px;
     }
+
 </style>

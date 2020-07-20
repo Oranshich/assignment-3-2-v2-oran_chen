@@ -1,10 +1,10 @@
 <template>
   <b-container>
     <h3>
-      {{ title }}:
+      {{ title }}
     </h3>
-    <b-row v-for="r in recipes" :key="r.id">
-      <b-col>
+    <b-row class="mb-7 mt-4" v-for="r in recipes" :key="r.id">
+      <b-col >
         <RecipePreview class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
@@ -34,5 +34,13 @@
 <style lang="scss" scoped>
   .container {
     min-height: 400px;
+  }
+  @font-face {
+    font-family: Satisfy;
+    src: url(../assets/Satisfy-Regular.ttf);
+  }
+  h3{
+      font-family: Satisfy;
+      font-size: 40px;
   }
 </style>

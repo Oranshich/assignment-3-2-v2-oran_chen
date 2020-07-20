@@ -15,21 +15,21 @@ const router = new VueRouter({
 });
 
 
-// router.beforeEach((to, from, next) => {
-//   // if the user logged in and than the cookie expired thus the local storage contains username but there is no cookie
-//   // if ((shared_data.username === undefined && Vue.$cookies.get("session")) || (shared_data.username !== undefined && !Vue.$cookies.get("session"))) {
-//   if (shared_data.username !== undefined && !Vue.$cookies.get("session")){
-//       // logout force
-//     shared_data.logout();
-//     // redirect to login page
-//     if (to.name!=='login')
-//       next({ name: 'login' });
-//     else
-//       next();
-//   } else {
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  // if the user has logged in and then his cookie expired thus the local storage should contain username but no cookie
+  console.log("cookie" + Vue.$cookies.get("session"));
+  if (shared_data.username !== undefined && !Vue.$cookies.get("session")){
+      // logout force
+    shared_data.logout();
+    // redirect to home page
+    if (to.name!=='main')
+      next({ name: 'main' });
+    else
+      next();
+  } else {
+    next();
+  }
+});
 
 import Vuelidate from "vuelidate";
 //import Multiselect from 'vue-multiselect';
@@ -46,6 +46,7 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  AvatarPlugin
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -58,6 +59,7 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  AvatarPlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 //Vue.component(Multiselect);
@@ -91,17 +93,22 @@ Vue.config.productionTip = false;
 const shared_data = {
   username: localStorage.username,
   recipes_info: {},
-  login(username) {
+  profilePic: localStorage.profilePic,
+  login(username,imageUrl) {
     localStorage.setItem("username", username);
     this.username = username;
     console.log("login", this.username);
+    this.profilePic = imageUrl;
   },
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    localStorage.removeItem("profilePic");
     Vue.$cookies.remove("session");
     this.username = undefined;
+    this.profilePic = "";
   },
+  prefixURL: "http://localhost:3000"
 };
 console.log(shared_data);
 // Vue.prototype.$root.store = shared_data;

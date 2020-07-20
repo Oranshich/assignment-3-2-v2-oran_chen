@@ -40,11 +40,15 @@
         font-size: 20px;
 
     }
+    @font-face {
+        font-family: Satisfy;
+        src: url(../assets/Satisfy-Regular.ttf);
+    }
     h1{
         padding-top: 1%;
-        font-family: "Berlin Sans FB";
+        font-family: Satisfy;
         font-weight: bold;
-        font-size: 40px;
+        font-size: 46px;
         color: blue;
         display: flex;
         margin-left: 38%;
