@@ -33,12 +33,8 @@
                 required: true
             }
         },
-        // beforeUpdate() {
-        //     this.splitRecipes();
-        // },
         methods:{
             splitRecipes(){
-                //console.log("recipes: " + this.recipes);
                 let threeRecipes = [];
                 let i;
                 let temp = [];
@@ -46,14 +42,11 @@
 
                     if (i % 3 === 0 && i > 0){
                         threeRecipes.push(temp);
-                       // console.log("temp: " + temp);
                         temp = [];
                     }
                     temp.push(this.recipes[i]);
                 }
                 threeRecipes.push(temp);
-                //console.log("three recipes: " + threeRecipes);
-
                 return threeRecipes
             }
         }

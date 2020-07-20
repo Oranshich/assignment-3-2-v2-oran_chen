@@ -183,10 +183,6 @@
         >
             Register failed: {{ form.submitError }}
         </b-alert>
-        <!-- <b-card class="mt-3 md-3" header="Form Data Result">
-          <pre class="m-0"><strong>form:</strong> {{ form }}</pre>
-          <pre class="m-0"><strong>$v.form:</strong> {{ $v.form }}</pre>
-        </b-card> -->
     </div>
 </template>
 
@@ -275,7 +271,6 @@
                     debugger
                     const response = await this.axios.post(
                         this.$root.store.prefixURL + "/register",
-                        //       "http://localhost:3000/register",
                         {
                             username: this.form.username,
                             password: this.form.password
@@ -285,16 +280,13 @@
                 } catch (err) {
                     console.log(err.response.data.error.message);
                     this.form.submitError = err.response.data.error.message;
-                    //this.form.submitError = err.response.message;
                 }
             },
             onRegister() {
-                // console.log("register method called");
                 this.$v.form.$touch();
                 if (this.$v.form.$anyError) {
                     return;
                 }
-                // console.log("register method go");
                 this.Register();
             },
             onReset() {

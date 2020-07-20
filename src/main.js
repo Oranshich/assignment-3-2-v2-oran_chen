@@ -17,7 +17,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // if the user has logged in and then his cookie expired thus the local storage should contain username but no cookie
-  console.log("cookie" + Vue.$cookies.get("session"));
+  console.log("cookie: " + Vue.$cookies.get("session"));
   if (shared_data.username !== undefined && !Vue.$cookies.get("session")){
       // logout force
     shared_data.logout();
@@ -32,7 +32,6 @@ router.beforeEach((to, from, next) => {
 });
 
 import Vuelidate from "vuelidate";
-//import Multiselect from 'vue-multiselect';
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import {

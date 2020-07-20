@@ -23,9 +23,6 @@
         async created(){
             await this.getUserInformation();
         },
-        // async mounted() {
-        //     await this.getUserInformation();
-        // },
         computed: {
            username: function(){
                 return this.$root.store.username
@@ -34,17 +31,13 @@
         methods: {
             async getUserInformation() {
                 try {
-                    console.log("My recipe: " + this.myRecipe);
-                    debugger
                     if (this.$root.store.username && this.myRecipe.id.toString().length<=10) {
                         //bring watched and saved info
-                        console.log("this.$root.store.recipes_info" + this.$root.store.recipes_info);
-                        console.log("this.myRecipe.id" + this.myRecipe.id);
+
                         if (this.myRecipe.id in this.$root.store.recipes_info) {
 
                             this.myRecipe.watched = this.$root.store.recipes_info[this.myRecipe.id]["watched"];
                             this.myRecipe.saved = this.$root.store.recipes_info[this.myRecipe.id]["saved"];
-                            console.log("this.myRecipe.watched: " +this.myRecipe.watched);
                             this.isFavorite = this.myRecipe.saved;
                             this.isWatched = this.myRecipe.watched;
                         } else {
@@ -53,7 +46,6 @@
                                 this.myRecipe.id + "]",
                                 {withCredentials: true}
                             );
-                            console.log("responseWatchedSaved: "+responseWatchedSaved);
                             this.myRecipe.watched = responseWatchedSaved.data[this.myRecipe.id]["watched"];
                             this.myRecipe.saved = responseWatchedSaved.data[this.myRecipe.id]["saved"];
                             this.$root.store.recipes_info[this.myRecipe.id] = {
