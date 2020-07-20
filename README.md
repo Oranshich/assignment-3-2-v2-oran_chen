@@ -23,6 +23,8 @@ We've created in advance two users, whom we've inserted to the database:
 Each of these users own 3 personal recipes and 3 family recipes.
 
 
+_____________________________________________________________________________________________________________________________________________________________________________
+
 ## Changes performed in the backend part after submission (commited after Jun 8, 2020):
 - Fixed cors according to Eran's instructions
 - Changed cookie parameters  according to Eran's instructions
