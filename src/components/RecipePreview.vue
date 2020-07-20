@@ -64,6 +64,7 @@
 </script>
 
 <style scoped>
+
     .recipe-preview {
         display: inline-block;
         width: 80%;
@@ -71,6 +72,8 @@
         position: relative;
         /*margin: 10px 10px;*/
         font-family: Calibri;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
 
     }
     .recipe-preview > .recipe-body {
@@ -90,6 +93,7 @@
         background-size: cover;
         font-family: Calibri;
     }
+
     .recipe-footer .recipe-title {
         padding: 10px 10px;
         width: 100%;
