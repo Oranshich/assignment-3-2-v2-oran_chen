@@ -39,6 +39,12 @@
                         v-model="$v.form.firstName.$model"
                         type="text"
                         :state="validateState('firstName')"></b-form-input>
+                <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+                    First Name is required
+                </b-form-invalid-feedback>
+                <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
+                    First Name should contain only letters
+                </b-form-invalid-feedback>
             </b-form-group>
 
             <b-form-group
@@ -51,6 +57,9 @@
                         v-model="$v.form.lastName.$model"
                         type="text"
                         :state="validateState('lastName')"></b-form-input>
+                <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
+                    Last Name should contain only letters
+                </b-form-invalid-feedback>
             </b-form-group>
 
             <b-form-group
@@ -221,12 +230,15 @@
                 },
                 firstName: {
                     required,
+                    alpha
                 },
                 lastName: {
                     required,
+                    alpha
                 },
                 country: {
-                    required
+                    required,
+                    alpha
                 },
                 email: {
                     required,
