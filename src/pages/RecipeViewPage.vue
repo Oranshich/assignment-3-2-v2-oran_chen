@@ -17,6 +17,18 @@
                                     <span  class="text_recipe">{{recipe.aggregateLikes}} like this recipe</span>
                                 </div>
                             </li>
+                            <li v-if="recipe.preparedAt !== null && recipe.preparedAt !== undefined" class="titleContainer">
+                                <div>
+                                    <span class="title_recipe">At:</span>
+                                    <span  class="text_recipe"> {{recipe.preparedAt}} </span>
+                                </div>
+                            </li>
+                            <li v-if="recipe.preparedBy !== null && recipe.preparedBy !== undefined" class="titleContainer">
+                                <div>
+                                    <span class="title_recipe">By:</span>
+                                    <span  class="text_recipe"> {{recipe.preparedBy}} </span>
+                                </div>
+                            </li>
                             <li class="titleContainer">
                                 <div>
                                     <span class="title_recipe">Ready in:</span>
@@ -135,7 +147,9 @@
                     extendedIngredients,
                     aggregateLikes,
                     readyInMinutes,
-                    image
+                    image,
+                    preparedBy,
+                    preparedAt
                 } = response.data;
 
                 let _recipe = {
@@ -149,7 +163,9 @@
                     extendedIngredients,
                     aggregateLikes,
                     readyInMinutes,
-                    image
+                    image,
+                    preparedBy,
+                    preparedAt
                 };
 
                 this.recipe = _recipe;
