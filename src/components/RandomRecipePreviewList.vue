@@ -35,7 +35,6 @@
                         this.recipes[i].watched = "";
                         this.recipes[i].saved = "";
                     }
-                    // await this.getUserInformation();
                 } catch (error) {
                     console.log(error);
                 }

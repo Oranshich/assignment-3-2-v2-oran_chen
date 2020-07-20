@@ -24,11 +24,9 @@
                     this.$root.store.prefixURL + "/user/getMyFamilyRecipes",
                     {withCredentials: true}
                 );
-                console.log(response);
                 const recipes = response.data;
                 this.recipes = [];
                 this.recipes.push(...recipes);
-                // console.log(this.recipes);
                 for (let i = 0; i < this.recipes.length; i++) {
                     this.recipes[i].watched = "";
                     this.recipes[i].saved = "";

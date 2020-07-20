@@ -39,6 +39,12 @@
                         v-model="$v.form.firstName.$model"
                         type="text"
                         :state="validateState('firstName')"></b-form-input>
+                <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+                    First Name is required
+                </b-form-invalid-feedback>
+                <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
+                    First Name should contain only letters
+                </b-form-invalid-feedback>
             </b-form-group>
 
             <b-form-group
@@ -51,6 +57,9 @@
                         v-model="$v.form.lastName.$model"
                         type="text"
                         :state="validateState('lastName')"></b-form-input>
+                <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
+                    Last Name should contain only letters
+                </b-form-invalid-feedback>
             </b-form-group>
 
             <b-form-group
@@ -174,10 +183,6 @@
         >
             Register failed: {{ form.submitError }}
         </b-alert>
-        <!-- <b-card class="mt-3 md-3" header="Form Data Result">
-          <pre class="m-0"><strong>form:</strong> {{ form }}</pre>
-          <pre class="m-0"><strong>$v.form:</strong> {{ $v.form }}</pre>
-        </b-card> -->
     </div>
 </template>
 
@@ -221,12 +226,15 @@
                 },
                 firstName: {
                     required,
+                    alpha
                 },
                 lastName: {
                     required,
+                    alpha
                 },
                 country: {
-                    required
+                    required,
+                    alpha
                 },
                 email: {
                     required,
@@ -263,7 +271,6 @@
                     debugger
                     const response = await this.axios.post(
                         this.$root.store.prefixURL + "/register",
-                        //       "http://localhost:3000/register",
                         {
                             username: this.form.username,
                             password: this.form.password
@@ -273,16 +280,13 @@
                 } catch (err) {
                     console.log(err.response.data.error.message);
                     this.form.submitError = err.response.data.error.message;
-                    //this.form.submitError = err.response.message;
                 }
             },
             onRegister() {
-                // console.log("register method called");
                 this.$v.form.$touch();
                 if (this.$v.form.$anyError) {
                     return;
                 }
-                // console.log("register method go");
                 this.Register();
             },
             onReset() {

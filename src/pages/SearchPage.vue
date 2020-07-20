@@ -76,9 +76,7 @@
                 try {
                     if(this.search_text.length > 0) {
                         const response = await this.axios.get(
-                            //"http://assignment3-oranchen.herokuapp.com/search/query/:searchQuery/amount/:num",
                             this.$root.store.prefixURL + "/recipes/search/query/" + this.search_text + "/amount/" + this.num + "?" + filerText
-                            //"http://localhost:3000/recipes/search/query/"+ this.search_text + "/amount/" + this.num + "?" + filerText
                         );
 
                         const recipes = response.data;
@@ -153,19 +151,6 @@
                     filterText = filterText + this.filterIntolerance[i].name + ",";
                 }
 
-                // for (let i = 0; i < this.filterCuisine.length; i++) {
-                //     filterText = filterText + "cuisine=" + this.filterCuisine[i].name + "&";
-                // }
-                //
-                //
-                // for (let i = 0; i < this.filterDiet.length; i++) {
-                //     filterText = filterText + "diet=" + this.filterDiet[i].name + "&";
-                // }
-                //
-                // for (let i = 0; i < this.filterIntolerance.length; i++) {
-                //     filterText = filterText + "intolerance=" + this.filterIntolerance[i].name + "&";
-                // }
-
                 if(filterText.length > 0){
                     return filterText.substring(0, filterText.length - 1);
                 }
@@ -176,7 +161,6 @@
 
             onFilter(value) {
                 if (value.name === 'cuisine') {
-                    //console.log(value.value[0].name);
                     this.filterCuisine = value.value;
                 } else if (value.name === 'diet') {
                     this.filterDiet = value.value;

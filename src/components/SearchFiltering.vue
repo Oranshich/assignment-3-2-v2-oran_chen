@@ -32,12 +32,9 @@
         data(){
             return{
                 cuisine: [],
-                //cuisineOptions:['African','American','British','Cajun','Caribbean','Chinese','Eastern European','European','French','German','Greek','Indian','Irish','Italian','Japanese','Jewish','Korean','Latin American','Mediterranean','Mexican','Middle Eastern','Nordic','Southern','Spanish','Thai','Vietnamese']
                 cuisineOptions:[{name:'African'},{name:'American'},{name:'British'},{name:'Cajun'},{name:'Caribbean'},{name:'Chinese'},{name:'Eastern European'},{name:'European'},{name:'French'},
                     {name:'German'},{name:'Greek'},{name:'Indian'},{name:'Irish'},{name:'Italian'},{name:'Japanese'},{name:'Jewish'},{name:'Korean'},{name:'Latin American'},{name:'Med'}],
                 isLoading: false,
-                //selectedOptions:[],
-                //cuisineOptions : [],
                 diet: [],
                 dietOptions : [{name:'Gluten Free'},{name:'Ketogenic'},{name:'Vegetarian'},{name:'Lacto-Vegetarian'},{name:'Ovo-Vegetarian'},{name:'Vegan'},{name:'Pescetarian'},{name:'Paleo'},{name:'Primal'},{name:'Whole30'}],
                 intolerance: [],

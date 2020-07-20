@@ -4,7 +4,7 @@
 
         <div class="text-center">
             <p>Welcome to our recipes website!</p>
-            <p>This website was created by Chen Galed and Oran Shichman.</p>
+            <p>This website was created by Chen Galed and Oran Shichman, 3rd year students in BGU ISE department.</p>
             <br>
             <p>Check out our previous works: </p>
             <a href="https://sise-web-development-environments.github.io/assignment2-oran-chen/">Pacman online game</a>
