@@ -42,6 +42,9 @@
                 <b-form-invalid-feedback v-if="!$v.form.firstName.required">
                     First Name is required
                 </b-form-invalid-feedback>
+                <b-form-invalid-feedback v-else-if="!$v.form.firstName.length">
+                    First Name length should be between 3-8 characters long
+                </b-form-invalid-feedback>
                 <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
                     First Name should contain only letters
                 </b-form-invalid-feedback>
@@ -57,6 +60,9 @@
                         v-model="$v.form.lastName.$model"
                         type="text"
                         :state="validateState('lastName')"></b-form-input>
+                <b-form-invalid-feedback v-if="!$v.form.lastName.required">
+                    Last Name is required
+                </b-form-invalid-feedback>
                 <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
                     Last Name should contain only letters
                 </b-form-invalid-feedback>
@@ -103,6 +109,16 @@
                 >
                     Have length between 5-10 characters long
                 </b-form-invalid-feedback>
+                <b-form-invalid-feedback
+                    v-if="$v.form.password.required && !$v.form.password.specialCharacter"
+                >
+                    Have at least one special character
+                </b-form-invalid-feedback>
+                <b-form-invalid-feedback
+                    v-if="$v.form.password.required && !$v.form.password.number"
+                >
+                    Have at least one number
+                </b-form-invalid-feedback>
             </b-form-group>
 
             <b-form-group
@@ -141,6 +157,9 @@
                 <b-form-invalid-feedback v-if="!$v.form.email.required">
                     Email is required
                 </b-form-invalid-feedback>
+                <b-form-invalid-feedback v-if="!$v.form.email.email">
+                    Email is required
+                </b-form-invalid-feedback>
             </b-form-group>
 
             <b-form-group
@@ -157,6 +176,9 @@
                 ></b-form-input>
                 <b-form-invalid-feedback v-if="!$v.form.profileImage.required">
                     Profile Image URL is required
+                </b-form-invalid-feedback>
+                <b-form-invalid-feedback v-else-if="!$v.form.profileImage.url">
+                    Profile Image needs to be url
                 </b-form-invalid-feedback>
             </b-form-group>
 
@@ -195,6 +217,7 @@
         alpha,
         sameAs,
         email,
+        url
     } from "vuelidate/lib/validators";
 
     export default {
@@ -233,15 +256,15 @@
                     alpha
                 },
                 country: {
-                    required,
-                    alpha
+                    required
                 },
                 email: {
                     required,
                     email
                 },
                 profileImage: {
-                    required
+                    required,
+                    url,
                 },
                 password: {
                     required,
@@ -280,9 +303,11 @@
                 } catch (err) {
                     console.log(err.response.data.error.message);
                     this.form.submitError = err.response.data.error.message;
+                    this.$root.toast("Register failed", err.response.data.error.message, "warning");
                 }
             },
             onRegister() {
+                this.form.submitError = undefined;
                 this.$v.form.$touch();
                 if (this.$v.form.$anyError) {
                     return;
