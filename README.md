@@ -3,8 +3,8 @@
  <img src="https://github.com/SISE-Web-Development-Environments/assignment-3-2-oran_chen/blob/master/download.jpg" height="80">
 
 ### Submitted by:
-* Oran Shichman - id: 203388426
-* Chen Galed - id: 311123541
+* Oran Shichman.
+* Chen Galed.
 
 ## Updated API link:
 https://app.swaggerhub.com/apis/Oranshich/Assignment3.1/1.0.2#/
